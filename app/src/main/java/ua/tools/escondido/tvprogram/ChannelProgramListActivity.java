@@ -35,11 +35,15 @@ public class ChannelProgramListActivity extends AppCompatActivity {
         TextView channelNameText = (TextView) findViewById(R.id.channel_name);
         channelNameText.setText(channelName);
         ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(new NovyiTvContentParser());
+
+        Date date = new Date(System.currentTimeMillis() - 18000000);
+        String formattedDate = ua.tools.escondido.tvprogram.utils.DateUtils.formatChannelAccessDate(date);
+
         if(Channels.NOVIY_CANAL.name().equalsIgnoreCase(channelName)){
             channelProgramService = new ChannelProgramServiceImpl<>(new NovyiTvContentParser());
         }
         try {
-            List<ProgramEvent> programEvents = channelProgramService.getChannelProgram(null);
+            List<ProgramEvent> programEvents = channelProgramService.getChannelProgram(formattedDate);
         } catch (IOException e) {
             e.printStackTrace();
         }

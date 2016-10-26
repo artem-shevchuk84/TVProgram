@@ -1,6 +1,5 @@
 package ua.tools.escondido.tvprogram.services.parser;
 
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,11 +20,13 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StbContentParser extends ChannelContentParser {
+/**
+ * Created by artem.shevchuk on 10/21/2016.
+ */
+public class ICTVContentParser extends ChannelContentParser {
 
     @Override
     public Channels getChannel() {
-        return Channels.STB;
+        return Channels.ICTV;
     }
-
 }

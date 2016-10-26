@@ -16,5 +16,5 @@ import java.util.List;
  */
 public interface ChannelProgramService {
 
-    List<ProgramEvent> getChannelProgram(Date date) throws IOException;
+    List<ProgramEvent> getChannelProgram(String date) throws IOException;
 }

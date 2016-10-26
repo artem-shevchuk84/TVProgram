@@ -4,8 +4,10 @@ package ua.tools.escondido.tvprogram.data;
  * Created by artem.shevchuk on 10/19/2016.
  */
 public enum Channels {
-    NOVIY_CANAL("http://novy.tv/ua/tv/","POST","UTF-8","<div id=\"schedule\">","<!-- [END] TIMETABLE -->"),
-    STB("http://tvgid.ua/channels/stb/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>");
+    //NOVIY_CANAL("http://novy.tv/ua/tv/","POST","UTF-8","<div id=\"schedule\">","<!-- [END] TIMETABLE -->"),
+    NOVIY_CANAL("http://tvgid.ua/channels/noviy_kanal/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
+    STB("http://tvgid.ua/channels/stb/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
+    ICTV("http://tvgid.ua/channels/ictv/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>");
 
     private String url;
     private String method;

@@ -46,7 +46,7 @@ public class ChannelProgramServiceImpl<T extends ChannelContentParser> implement
     }
 
     @Override
-    public List<ProgramEvent> getChannelProgram(Date date) throws IOException {
+    public List<ProgramEvent> getChannelProgram(String date) throws IOException {
         Channels channel = channelContentParser.getChannel();
         List<ProgramEvent> resultData = getCachedData(channel, date);
         if(resultData == null){
@@ -58,7 +58,7 @@ public class ChannelProgramServiceImpl<T extends ChannelContentParser> implement
         return resultData;
     }
 
-    private List<ProgramEvent> getCachedData(Channels channel, Date date) {
+    private List<ProgramEvent> getCachedData(Channels channel, String date) {
         return null;
     }
 

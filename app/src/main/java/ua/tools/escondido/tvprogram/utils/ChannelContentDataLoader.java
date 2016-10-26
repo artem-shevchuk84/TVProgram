@@ -13,12 +13,16 @@ import java.util.Date;
 
 public class ChannelContentDataLoader {
 
-    public String loadContent(Channels channel, Date date) throws IOException {
+    public String loadContent(Channels channel, String date) throws IOException {
         String content = null;
         HttpURLConnection conn = null;
         BufferedReader input = null;
+        String additionalPathByDate = "";
+        if (date != null){
+            additionalPathByDate = date+"/tmall/";
+        }
         try {//TODO: Currently method return data just for current day!
-            URL url = new URL(channel.getUrl());
+            URL url = new URL(channel.getUrl()+additionalPathByDate);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod(channel.getMethod());
 
