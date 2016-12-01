@@ -50,9 +50,9 @@ public class ChannelProgramListActivity extends ListActivity {
         Intent intent = getIntent();
         channelName = intent.getStringExtra(Constants.CHANNEL_NAME);
         Calendar calendar = Calendar.getInstance();
-        String today = DateUtils.formatDate("EEE, d MMM yyyy", calendar.getTime());
+        String today = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, calendar.getTime());
         calendar.add(Calendar.DATE, 1);
-        String tomorrow = DateUtils.formatDate("EEE, d MMM yyyy", calendar.getTime());
+        String tomorrow = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, calendar.getTime());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(channelName);
