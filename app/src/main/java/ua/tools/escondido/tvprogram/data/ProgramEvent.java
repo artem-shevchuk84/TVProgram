@@ -1,19 +1,18 @@
 package ua.tools.escondido.tvprogram.data;
 
-/**
- * Created by artem.shevchuk on 10/19/2016.
- */
 public class ProgramEvent {
 
     private String time;
     private String name;
+    private String programInfoPath;
 
     public ProgramEvent() {
     }
 
-    public ProgramEvent(String time, String name) {
+    public ProgramEvent(String time, String name, String programInfoPath) {
         this.time = time;
         this.name = name;
+        this.programInfoPath = programInfoPath;
     }
 
     public String getTime() {
@@ -30,5 +29,13 @@ public class ProgramEvent {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getProgramInfoPath() {
+        return programInfoPath;
+    }
+
+    public void setProgramInfoPath(String programInfoPath) {
+        this.programInfoPath = programInfoPath;
     }
 }

@@ -3,14 +3,12 @@ package ua.tools.escondido.tvprogram;
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNull;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
+import ua.tools.escondido.tvprogram.data.ProgramInfo;
 import ua.tools.escondido.tvprogram.services.ChannelProgramService;
 import ua.tools.escondido.tvprogram.services.impl.ChannelProgramServiceImpl;
 import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
@@ -48,6 +46,13 @@ public class ChannelProgramServiceTest {
         String formattedDate = DateUtils.formatChannelAccessDate(date);
         List<ProgramEvent> programEvents = channelProgramService.getChannelProgram(formattedDate);
         assertThat(programEvents, Is.is(IsNull.notNullValue()));
+    }
+
+    @Test
+    public void getChannelProgramInfoTest() throws Exception {
+        channelProgramService = new ChannelProgramServiceImpl<>(new NovyiTvContentParser());
+        ProgramInfo programInfo = channelProgramService.getProgramInfo("/entertainment/39555/abzats/");
+        assertThat(programInfo, Is.is(IsNull.notNullValue()));
     }
 
     @DataProvider

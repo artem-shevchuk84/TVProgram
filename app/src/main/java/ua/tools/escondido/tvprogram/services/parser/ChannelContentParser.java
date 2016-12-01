@@ -7,6 +7,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
+import ua.tools.escondido.tvprogram.data.ProgramInfo;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,9 +21,11 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ChannelContentParser {
+public class ChannelContentParser {
 
-    public abstract Channels getChannel();
+    public Channels getChannel(){
+        return null;
+    }
 
     public List<ProgramEvent> getPrograms(String content){
         List<ProgramEvent> events = null;
@@ -37,6 +40,7 @@ public abstract class ChannelContentParser {
             NodeList nodeList = (NodeList) xPath.compile("/table/tr[2]/td/table/tr/td/table[2]/tr").evaluate(doc, XPathConstants.NODESET);
             events = new ArrayList<>();
             for (int i = 0; i < nodeList.getLength(); i++) {
+                String programInfoPath = null;
                 Node node = nodeList.item(i);
                 int index = 2+i;
                 String basePath = "/table/tr[2]/td/table/tr/td/table[2]/tr["+ index +"]/td/table/tr/td";
@@ -44,10 +48,12 @@ public abstract class ChannelContentParser {
                 Node itemNode = (Node) xPath.compile(basePath + "[@class = 'item']/a").evaluate(node, XPathConstants.NODE);
                 if(itemNode == null){
                     itemNode = (Node) xPath.compile(basePath + "[@class = 'item']").evaluate(node, XPathConstants.NODE);
+                } else{
+                    programInfoPath = itemNode.getAttributes().getNamedItem("href").getTextContent();
                 }
                 if(timeNode != null && itemNode != null) {
                     ProgramEvent event = new ProgramEvent(timeNode.getFirstChild().getTextContent(),
-                            itemNode.getFirstChild().getTextContent());
+                            itemNode.getFirstChild().getTextContent(), programInfoPath);
                     events.add(event);
                 }
             }
@@ -57,9 +63,54 @@ public abstract class ChannelContentParser {
         return events;
     }
 
+    public ProgramInfo getProgramInfo(String content) {
+        ProgramInfo programInfo = null;
+        try {
+            content = cleanUpInfo(content);
+            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            InputSource is = new InputSource();
+            is.setCharacterStream(new StringReader(content));
+            Document doc = db.parse(is);
+
+            programInfo = new ProgramInfo();
+
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            Node programNameNode = (Node) xPath.compile("/table/tr/td/table/tr/td/h1").evaluate(doc, XPathConstants.NODE);
+            programInfo.setProgramName(programNameNode.getTextContent());
+
+            String expression = "/table/tr/td/table/tr[3]/td/table/tr/td/div/p";
+            Node baseNode = (Node) xPath.compile(expression).evaluate(doc, XPathConstants.NODE);
+            programInfo.setProgramDescription(baseNode.getTextContent());
+
+            Node imagePathNode = (Node) xPath.compile(expression + "/strong/img").evaluate(baseNode, XPathConstants.NODE);
+            if(imagePathNode == null){
+                imagePathNode = (Node) xPath.compile(expression + "/img").evaluate(baseNode, XPathConstants.NODE);
+                if(imagePathNode == null){
+                    imagePathNode = (Node) xPath.compile(expression + "/b/img").evaluate(baseNode, XPathConstants.NODE);
+                }
+            }
+            programInfo.setImagePath(imagePathNode.getAttributes().getNamedItem("src").getTextContent());
+
+        } catch (ParserConfigurationException | IOException | XPathExpressionException | SAXException e) {
+            //TODO: add log
+        }
+        return programInfo;
+    }
+
+
     protected String cleanUp(String content) {
         return content.replace("<img","img").
                 replace("&nbsp;","").
                 replace(" language=javascript","");
+    }
+
+    protected String cleanUpInfo(String content) {
+        return content.replace("<br>","").
+                replace("&nbsp;","").
+                replace("</br>","").
+                replace("<br />","").
+                replace("&ndash;","-").
+                replace("&rsquo;","'").
+                replace("&#039;","'");
     }
 }

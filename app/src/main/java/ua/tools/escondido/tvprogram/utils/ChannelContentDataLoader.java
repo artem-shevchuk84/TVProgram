@@ -1,19 +1,16 @@
 package ua.tools.escondido.tvprogram.utils;
 
-import org.apache.commons.io.IOUtils;
 import ua.tools.escondido.tvprogram.data.Channels;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.util.Date;
 
 public class ChannelContentDataLoader {
 
-    public String loadContent(Channels channel, String date) throws IOException {
+    public String loadContent(Channels channel, String date) {
         String content = null;
         HttpURLConnection conn = null;
         BufferedReader input = null;
@@ -21,7 +18,7 @@ public class ChannelContentDataLoader {
         if (date != null){
             additionalPathByDate = date+"/tmall/";
         }
-        try {//TODO: Currently method return data just for current day!
+        try {
             URL url = new URL(channel.getUrl()+additionalPathByDate);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod(channel.getMethod());
@@ -37,12 +34,56 @@ public class ChannelContentDataLoader {
             content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     content.substring(content.indexOf(channel.getStartMetric()), content.indexOf(channel.getEndMetric()));
 
-        } catch (ProtocolException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            input.close();
+            try {
+                assert input != null;
+                input.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             conn.disconnect();
         }
         return content;
     }
+
+    public String loadProgramInfoContent(String path) {
+        String content = null;
+        HttpURLConnection conn = null;
+        BufferedReader input = null;
+        String token = "<!------------------------------ Channel body ------------------------------------------------->";
+
+        try {
+            URL url = new URL("http://tvgid.ua" + path);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            input = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), "windows-1251"));
+            StringBuilder contentB = new StringBuilder();
+            String str;
+            while (null != (str = input.readLine())) {
+                contentB.append(str).append("\r\n");
+            }
+            content = contentB.toString();
+            content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                    content.substring(content.indexOf(token) + token.length(),
+                            content.indexOf("<div id=\"error-warning\">"));
+            content = content.concat("</div></td></tr></table></td></tr></table></td></tr></table>");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert input != null;
+                input.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            conn.disconnect();
+        }
+        return content;
+    }
+
 }

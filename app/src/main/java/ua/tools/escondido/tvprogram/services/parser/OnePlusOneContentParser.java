@@ -1,12 +1,12 @@
 package ua.tools.escondido.tvprogram.services.parser;
 
+
 import ua.tools.escondido.tvprogram.data.Channels;
 
-public class StbContentParser extends ChannelContentParser {
+public class OnePlusOneContentParser extends ChannelContentParser {
 
     @Override
     public Channels getChannel() {
-        return Channels.STB;
+        return Channels.ONE_PLUS_ONE;
     }
-
 }

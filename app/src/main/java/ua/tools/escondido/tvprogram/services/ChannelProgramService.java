@@ -1,20 +1,14 @@
 package ua.tools.escondido.tvprogram.services;
 
-import org.xml.sax.SAXException;
-import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
-import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
+import ua.tools.escondido.tvprogram.data.ProgramInfo;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
-/**
- * Created by artem.shevchuk on 10/19/2016.
- */
+
 public interface ChannelProgramService {
 
-    List<ProgramEvent> getChannelProgram(String date) throws IOException;
+    List<ProgramEvent> getChannelProgram(String date);
+
+    ProgramInfo getProgramInfo(String path);
 }
