@@ -5,7 +5,7 @@ import java.util.List;
 import ua.tools.escondido.tvprogram.data.News;
 import ua.tools.escondido.tvprogram.services.NewsService;
 import ua.tools.escondido.tvprogram.services.parser.NewsParser;
-import ua.tools.escondido.tvprogram.utils.NewsLoader;
+import ua.tools.escondido.tvprogram.services.loader.NewsLoader;
 
 
 public class NewsServiceImpl implements NewsService {

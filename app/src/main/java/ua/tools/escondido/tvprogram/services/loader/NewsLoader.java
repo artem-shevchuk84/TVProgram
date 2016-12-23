@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram.utils;
+package ua.tools.escondido.tvprogram.services.loader;
 
 
 import java.io.BufferedReader;

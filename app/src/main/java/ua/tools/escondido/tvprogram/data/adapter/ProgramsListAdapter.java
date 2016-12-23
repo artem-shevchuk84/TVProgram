@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram.utils;
+package ua.tools.escondido.tvprogram.data.adapter;
 
 
 import android.content.Context;

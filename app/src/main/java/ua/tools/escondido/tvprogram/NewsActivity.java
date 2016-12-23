@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 import ua.tools.escondido.tvprogram.data.News;
 import ua.tools.escondido.tvprogram.services.NewsService;
 import ua.tools.escondido.tvprogram.services.impl.NewsServiceImpl;
-import ua.tools.escondido.tvprogram.utils.NewsListAdapter;
+import ua.tools.escondido.tvprogram.data.adapter.NewsListAdapter;
 
 public class NewsActivity extends ListActivity {
 

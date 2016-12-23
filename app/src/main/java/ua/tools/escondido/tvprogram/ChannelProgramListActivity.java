@@ -27,7 +27,7 @@ import ua.tools.escondido.tvprogram.services.parser.UAPershiyContentParser;
 import ua.tools.escondido.tvprogram.services.parser.UkrainaTVContentParser;
 import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.DateUtils;
-import ua.tools.escondido.tvprogram.utils.ProgramsListAdapter;
+import ua.tools.escondido.tvprogram.data.adapter.ProgramsListAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,7 +38,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ChannelProgramListActivity extends ListActivity {
 
-    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(new NovyiTvContentParser());
+    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new NovyiTvContentParser());
     private ProgressDialog dialog;
     private String channelName;
 
@@ -63,8 +63,7 @@ public class ChannelProgramListActivity extends ListActivity {
         todayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date date = new Date(System.currentTimeMillis() - 18000000);
-                String formattedDate = DateUtils.formatChannelAccessDate(date);
+                String formattedDate = DateUtils.formatChannelAccessDate(DateUtils.getToday());
                 load(channelName, formattedDate);
             }
         });
@@ -75,7 +74,7 @@ public class ChannelProgramListActivity extends ListActivity {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(new Date(System.currentTimeMillis() - 18000000));
+                calendar.setTime(DateUtils.getToday());
                 calendar.add(Calendar.DATE, 1);
                 String formattedDate = DateUtils.formatChannelAccessDate(calendar.getTime());
                 load(channelName, formattedDate);
@@ -91,8 +90,7 @@ public class ChannelProgramListActivity extends ListActivity {
             }
         });
 
-        Date date = new Date(System.currentTimeMillis() - 18000000);
-        String formattedDate = DateUtils.formatChannelAccessDate(date);
+        String formattedDate = DateUtils.formatChannelAccessDate(DateUtils.getToday());
 
         load(channelName, formattedDate);
 
@@ -111,26 +109,27 @@ public class ChannelProgramListActivity extends ListActivity {
     }
 
     private void load(String channelName, String formattedDate) {
-        channelProgramService = new ChannelProgramServiceImpl<>(new NovyiTvContentParser());
+        channelProgramService = new ChannelProgramServiceImpl<>(this, new NovyiTvContentParser());
         if(getResources().getString(R.string.channel_novyj).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new NovyiTvContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new NovyiTvContentParser());
         }else if(getResources().getString(R.string.channel_stb).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new StbContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new StbContentParser());
         }else if(getResources().getString(R.string.channel_ictv).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new ICTVContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new ICTVContentParser());
         }else if(getResources().getString(R.string.channel_one_plus_one).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new OnePlusOneContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new OnePlusOneContentParser());
         }else if(getResources().getString(R.string.channel_mega).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new MegaContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new MegaContentParser());
         }else if(getResources().getString(R.string.channel_ukraina).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new UkrainaTVContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new UkrainaTVContentParser());
         }else if(getResources().getString(R.string.channel_ua_pervyj).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new UAPershiyContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new UAPershiyContentParser());
         }else if(getResources().getString(R.string.channel_inter).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new InterContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new InterContentParser());
         }else if(getResources().getString(R.string.channel_5kanal).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(new FiveChannelContentParser());
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new FiveChannelContentParser());
         }
+
         String[] data = new String[] {formattedDate};
         try {
             dialog = new ProgressDialog(this);

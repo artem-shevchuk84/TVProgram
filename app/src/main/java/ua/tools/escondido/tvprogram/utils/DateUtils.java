@@ -16,4 +16,8 @@ public class DateUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, new Locale("uk","UA"));
         return dateFormat.format(date);
     }
+
+    public static Date getToday(){
+        return new Date(System.currentTimeMillis() - 18000000);
+    }
 }

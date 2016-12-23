@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram.utils;
+package ua.tools.escondido.tvprogram.services.loader;
 
 import ua.tools.escondido.tvprogram.data.Channels;
 
@@ -36,7 +36,10 @@ public class ChannelContentDataLoader {
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
+        } catch (StringIndexOutOfBoundsException siobe){
+            siobe.printStackTrace();
+        }
+        finally {
             try {
                 assert input != null;
                 input.close();

@@ -1,6 +1,8 @@
 package ua.tools.escondido.tvprogram.data;
 
-public class ProgramEvent {
+import java.io.Serializable;
+
+public class ProgramEvent implements Serializable{
 
     private String time;
     private String name;

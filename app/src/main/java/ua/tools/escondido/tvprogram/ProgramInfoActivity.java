@@ -23,7 +23,7 @@ import ua.tools.escondido.tvprogram.utils.Constants;
 
 public class ProgramInfoActivity extends Activity {
 
-    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(new ChannelContentParser());
+    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new ChannelContentParser());
     private ProgressDialog dialog;
 
     @Override
