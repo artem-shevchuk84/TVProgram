@@ -1,17 +1,19 @@
 package ua.tools.escondido.tvprogram.data;
 
 
+import static ua.tools.escondido.tvprogram.utils.Constants.*;
+
 public enum Channels {
     //NOVIY_CANAL("http://novy.tv/ua/tv/","POST","UTF-8","<div id=\"schedule\">","<!-- [END] TIMETABLE -->"),
-    NOVIY_CANAL("https://tvgid.ua/channels/noviy_kanal/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    STB("https://tvgid.ua/channels/stb/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    ICTV("https://tvgid.ua/channels/ictv/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    ONE_PLUS_ONE("https://tvgid.ua/channels/1plus1/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    MEGA("https://tvgid.ua/channels/mega/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    UKRAINA("https://tvgid.ua/channels/ukraina/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    UA_PERVYJ("https://tvgid.ua/channels/ua_pervyj/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    INTER("https://tvgid.ua/channels/inter/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>"),
-    FIVE_KANAL("https://tvgid.ua/channels/5kanal/","GET","windows-1251","<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">","<noindex>");
+    NOVIY_CANAL(HTTPS_BASE_PATH + "/channels/noviy_kanal/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    STB(HTTPS_BASE_PATH + "/channels/stb/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    ICTV(HTTPS_BASE_PATH + "/channels/ictv/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    ONE_PLUS_ONE(HTTPS_BASE_PATH + "/channels/1plus1/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    MEGA(HTTPS_BASE_PATH + "/channels/mega/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    UKRAINA(HTTPS_BASE_PATH + "/channels/ukraina/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    UA_PERVYJ(HTTPS_BASE_PATH + "/channels/ua_pervyj/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    INTER(HTTPS_BASE_PATH + "/channels/inter/","GET",ENCODING_1251,START_METRIC,"<noindex>"),
+    FIVE_KANAL(HTTPS_BASE_PATH + "/channels/5kanal/","GET",ENCODING_1251,START_METRIC,"<noindex>");
 
     private String url;
     private String method;

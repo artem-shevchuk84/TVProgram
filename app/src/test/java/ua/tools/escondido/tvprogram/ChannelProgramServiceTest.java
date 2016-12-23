@@ -61,6 +61,8 @@ public class ChannelProgramServiceTest {
         channelProgramService = new ChannelProgramServiceImpl<>(context, new NovyiTvContentParser());
         ProgramInfo programInfo = channelProgramService.getProgramInfo("/entertainment/39555/abzats/");
         assertThat(programInfo, Is.is(IsNull.notNullValue()));
+        programInfo = channelProgramService.getProgramInfo("/kids/44709/horton/");
+        assertThat(programInfo, Is.is(IsNull.notNullValue()));
     }
 
     @DataProvider

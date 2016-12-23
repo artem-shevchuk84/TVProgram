@@ -1,6 +1,7 @@
 package ua.tools.escondido.tvprogram.services.loader;
 
 import ua.tools.escondido.tvprogram.data.Channels;
+import ua.tools.escondido.tvprogram.utils.Constants;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -58,12 +59,12 @@ public class ChannelContentDataLoader {
         String token = "<!------------------------------ Channel body ------------------------------------------------->";
 
         try {
-            URL url = new URL("http://tvgid.ua" + path);
+            URL url = new URL(Constants.HTTPS_BASE_PATH + path);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
             input = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream(), "windows-1251"));
+                    new InputStreamReader(conn.getInputStream(), Constants.ENCODING_1251));
             StringBuilder contentB = new StringBuilder();
             String str;
             while (null != (str = input.readLine())) {

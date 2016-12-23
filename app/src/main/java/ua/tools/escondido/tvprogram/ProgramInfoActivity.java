@@ -89,7 +89,7 @@ public class ProgramInfoActivity extends Activity {
     ProgramInfo getStub() throws InterruptedException,ExecutionException {
         ProgramInfo programInfo = new ProgramInfo();
         programInfo.setProgramName("Test program");
-        programInfo.setImagePath("http://tvgid.ua/i/uploads/Image/1(12830).jpg");
+        programInfo.setImagePath("https://tvgid.ua/i/uploads/Image/1(12830).jpg");
         programInfo.setProgramDescription("\"Ревізор\" - оригінальне телевізійне соціальне реаліті-шоу Нового каналу. Знімальна група проекту разом із ведучим Вадимом Абрамовим і шеф-редактором Анною Жижею проводять перевірки готелів, ресторанів, супермаркетів, інших точок сфери обслуговування.");
         return programInfo;
     }

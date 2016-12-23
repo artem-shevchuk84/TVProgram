@@ -78,18 +78,21 @@ public class ChannelContentParser {
             Node programNameNode = (Node) xPath.compile("/table/tr/td/table/tr/td/h1").evaluate(doc, XPathConstants.NODE);
             programInfo.setProgramName(programNameNode.getTextContent());
 
-            String expression = "/table/tr/td/table/tr[3]/td/table/tr/td/div/p";
+            String expression = ".//div[@id='ncnt']/p";
             Node baseNode = (Node) xPath.compile(expression).evaluate(doc, XPathConstants.NODE);
             programInfo.setProgramDescription(baseNode.getTextContent());
 
-            Node imagePathNode = (Node) xPath.compile(expression + "/strong/img").evaluate(baseNode, XPathConstants.NODE);
-            if(imagePathNode == null){
-                imagePathNode = (Node) xPath.compile(expression + "/img").evaluate(baseNode, XPathConstants.NODE);
-                if(imagePathNode == null){
-                    imagePathNode = (Node) xPath.compile(expression + "/b/img").evaluate(baseNode, XPathConstants.NODE);
+            Node imagePathNode = (Node) xPath.compile(".//div[@id='ncnt']//img").evaluate(doc, XPathConstants.NODE);
+            if(imagePathNode != null){
+                String imageURL = imagePathNode.getAttributes().getNamedItem("src").getTextContent();
+                if(!imageURL.contains("http")){
+                    imageURL = "https:" + imageURL;
+                }else{
+                    imageURL = imageURL.replace("http","https").replace(" ","%20");
                 }
+                programInfo.setImagePath(imageURL);
             }
-            programInfo.setImagePath(imagePathNode.getAttributes().getNamedItem("src").getTextContent());
+
 
         } catch (ParserConfigurationException | IOException | XPathExpressionException | SAXException e) {
             //TODO: add log
