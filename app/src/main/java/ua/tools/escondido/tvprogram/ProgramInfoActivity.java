@@ -32,6 +32,7 @@ public class ProgramInfoActivity extends Activity {
         setContentView(R.layout.program_info);
         Intent intent = getIntent();
         String programInfoPath = intent.getStringExtra(Constants.PROGRAM_INFO_PATH);
+        final String channelName = intent.getStringExtra(Constants.CHANNEL_NAME);
 
         ImageView programImage = (ImageView) findViewById(R.id.program_image);
         TextView name = (TextView) findViewById(R.id.program_title);
@@ -42,6 +43,7 @@ public class ProgramInfoActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProgramInfoActivity.this, ChannelProgramListActivity.class);
+                intent.putExtra(Constants.CHANNEL_NAME, channelName);
                 startActivity(intent);
             }
         });

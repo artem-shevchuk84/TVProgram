@@ -103,6 +103,7 @@ public class ChannelProgramListActivity extends ListActivity {
         if(programInfoPath != null){
             Intent intent = new Intent(this, ProgramInfoActivity.class);
             intent.putExtra(Constants.PROGRAM_INFO_PATH, programInfoPath);
+            intent.putExtra(Constants.CHANNEL_NAME, channelName);
             startActivity(intent);
         }
 
