@@ -19,6 +19,7 @@ import ua.tools.escondido.tvprogram.services.impl.ChannelProgramServiceImpl;
 import ua.tools.escondido.tvprogram.services.parser.FiveChannelContentParser;
 import ua.tools.escondido.tvprogram.services.parser.ICTVContentParser;
 import ua.tools.escondido.tvprogram.services.parser.InterContentParser;
+import ua.tools.escondido.tvprogram.services.parser.KOneChannelContentParser;
 import ua.tools.escondido.tvprogram.services.parser.MegaContentParser;
 import ua.tools.escondido.tvprogram.services.parser.NovyiTvContentParser;
 import ua.tools.escondido.tvprogram.services.parser.OnePlusOneContentParser;
@@ -129,6 +130,8 @@ public class ChannelProgramListActivity extends ListActivity {
             channelProgramService = new ChannelProgramServiceImpl<>(this, new InterContentParser());
         }else if(getResources().getString(R.string.channel_5kanal).equalsIgnoreCase(channelName)){
             channelProgramService = new ChannelProgramServiceImpl<>(this, new FiveChannelContentParser());
+        }else if(getResources().getString(R.string.channel_k1).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new KOneChannelContentParser());
         }
 
         String[] data = new String[] {formattedDate};

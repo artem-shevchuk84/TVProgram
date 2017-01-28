@@ -38,7 +38,8 @@ public class HomeActivity extends ListActivity{
                 getResources().getString(R.string.channel_ukraina),
                 getResources().getString(R.string.channel_ua_pervyj),
                 getResources().getString(R.string.channel_inter),
-                getResources().getString(R.string.channel_5kanal)
+                getResources().getString(R.string.channel_5kanal),
+                getResources().getString(R.string.channel_k1)
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
