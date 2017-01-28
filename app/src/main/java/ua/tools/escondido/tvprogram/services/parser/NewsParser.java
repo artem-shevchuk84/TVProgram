@@ -46,7 +46,8 @@ public class NewsParser {
                 newsItem.setLink(link.getTextContent());
 
                 Node imagePath = (Node) xPath.compile(basePath + "/enclosure").evaluate(node, XPathConstants.NODE);
-                newsItem.setImagePath(imagePath.getAttributes().getNamedItem("url").getTextContent());
+                String imageUrl = imagePath.getAttributes().getNamedItem("url").getTextContent();
+                newsItem.setImagePath("https:" + imageUrl);
 
                 Node publicationDate = (Node) xPath.compile(basePath + "/pubDate").evaluate(node, XPathConstants.NODE);
                 newsItem.setPublicationDate(publicationDate.getTextContent());
