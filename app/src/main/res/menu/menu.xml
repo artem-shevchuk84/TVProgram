@@ -5,6 +5,10 @@
           android:title="@string/action_channels"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+    <item android:id="@+id/action_tvprograms"
+          android:title="@string/action_tvprograms"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
     <item android:id="@+id/action_news"
           android:title="@string/action_news"
           android:orderInCategory="100"

@@ -25,6 +25,7 @@ public class ProgramInfoActivity extends Activity {
 
     private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new ChannelContentParser());
     private ProgressDialog dialog;
+    private String activityToBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class ProgramInfoActivity extends Activity {
         Intent intent = getIntent();
         String programInfoPath = intent.getStringExtra(Constants.PROGRAM_INFO_PATH);
         final String channelName = intent.getStringExtra(Constants.CHANNEL_NAME);
+        activityToBack = intent.getStringExtra(Constants.BACK_ACTIVITY);
 
         ImageView programImage = (ImageView) findViewById(R.id.program_image);
         TextView name = (TextView) findViewById(R.id.program_title);
@@ -42,8 +44,9 @@ public class ProgramInfoActivity extends Activity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProgramInfoActivity.this, ChannelProgramListActivity.class);
+                Intent intent = new Intent(ProgramInfoActivity.this, ProgramListActivity.class);
                 intent.putExtra(Constants.CHANNEL_NAME, channelName);
+                intent.putExtra(Constants.BACK_ACTIVITY, activityToBack);
                 startActivity(intent);
             }
         });

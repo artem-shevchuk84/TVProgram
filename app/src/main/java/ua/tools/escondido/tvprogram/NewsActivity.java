@@ -17,7 +17,7 @@ import ua.tools.escondido.tvprogram.services.NewsService;
 import ua.tools.escondido.tvprogram.services.impl.NewsServiceImpl;
 import ua.tools.escondido.tvprogram.data.adapter.NewsListAdapter;
 
-public class NewsActivity extends ListActivity {
+public class NewsActivity extends ListActivity{
 
     private ProgressDialog dialog;
     private NewsService newsService = new NewsServiceImpl();
@@ -52,14 +52,20 @@ public class NewsActivity extends ListActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.action_channels:
-                Intent intent = new Intent(this, HomeActivity.class);
+                intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_tvprograms:
+                intent = new Intent(this, TVProgramActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_news:
+                intent = new Intent(this, NewsActivity.class);
+                startActivity(intent);
                 return true;
-
             default:
                 break;
         }

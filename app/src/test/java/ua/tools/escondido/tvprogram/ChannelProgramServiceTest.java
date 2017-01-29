@@ -19,6 +19,7 @@ import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
 import ua.tools.escondido.tvprogram.services.parser.ICTVContentParser;
 import ua.tools.escondido.tvprogram.services.parser.NovyiTvContentParser;
 import ua.tools.escondido.tvprogram.services.parser.StbContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.SerialsContentParser;
 import ua.tools.escondido.tvprogram.utils.DateUtils;
 
 import java.util.List;
@@ -72,6 +73,7 @@ public class ChannelProgramServiceTest {
                 { new NovyiTvContentParser() },
                 { new StbContentParser() },
                 { new ICTVContentParser() },
+                { new SerialsContentParser() },
         };
     }
 

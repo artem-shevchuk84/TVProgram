@@ -37,23 +37,31 @@ public class ChannelContentParser {
             Document doc = db.parse(is);
 
             XPath xPath = XPathFactory.newInstance().newXPath();
-            NodeList nodeList = (NodeList) xPath.compile("/table/tr[2]/td/table/tr/td/table[2]/tr").evaluate(doc, XPathConstants.NODESET);
+            NodeList nodeList = (NodeList) xPath.compile(getBaseXPath() + "/tr").evaluate(doc, XPathConstants.NODESET);
             events = new ArrayList<>();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 String programInfoPath = null;
                 Node node = nodeList.item(i);
                 int index = 2+i;
-                String basePath = "/table/tr[2]/td/table/tr/td/table[2]/tr["+ index +"]/td/table/tr/td";
+                String basePath = getBaseXPath() + "/tr["+ index +"]/td/table/tr/td";
                 Node timeNode = (Node) xPath.compile(basePath + "[@class = 'time']").evaluate(node, XPathConstants.NODE);
                 Node itemNode = (Node) xPath.compile(basePath + "[@class = 'item']/a").evaluate(node, XPathConstants.NODE);
+                Node channelNameNode = (Node) xPath.compile(basePath + "[@class = 'item']/a[2]").evaluate(node, XPathConstants.NODE);
                 if(itemNode == null){
                     itemNode = (Node) xPath.compile(basePath + "[@class = 'item']").evaluate(node, XPathConstants.NODE);
                 } else{
-                    programInfoPath = itemNode.getAttributes().getNamedItem("href").getTextContent();
+                    Node href = itemNode.getAttributes().getNamedItem("href");
+                    if(href != null) {
+                        programInfoPath = itemNode.getAttributes().getNamedItem("href").getTextContent();
+                    }
                 }
                 if(timeNode != null && itemNode != null) {
+                    String programmName = itemNode.getFirstChild().getTextContent();
+                    if (channelNameNode != null){
+                        programmName = programmName.concat(" " + channelNameNode.getFirstChild().getTextContent());
+                    }
                     ProgramEvent event = new ProgramEvent(timeNode.getFirstChild().getTextContent(),
-                            itemNode.getFirstChild().getTextContent(), programInfoPath);
+                            programmName, programInfoPath);
                     events.add(event);
                 }
             }
@@ -115,5 +123,9 @@ public class ChannelContentParser {
                 replace("&ndash;","-").
                 replace("&rsquo;","'").
                 replace("&#039;","'");
+    }
+
+    protected String getBaseXPath(){
+        return "/table/tr[2]/td/table/tr/td/table[2]";
     }
 }

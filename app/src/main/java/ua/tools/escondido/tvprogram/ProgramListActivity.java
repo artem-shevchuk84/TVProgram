@@ -1,5 +1,6 @@
 package ua.tools.escondido.tvprogram;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,22 +27,30 @@ import ua.tools.escondido.tvprogram.services.parser.OnePlusOneContentParser;
 import ua.tools.escondido.tvprogram.services.parser.StbContentParser;
 import ua.tools.escondido.tvprogram.services.parser.UAPershiyContentParser;
 import ua.tools.escondido.tvprogram.services.parser.UkrainaTVContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.EntertainmentContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.FilmsContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.InformationContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.KidContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.SerialsContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.ShowContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.SociopoliticalContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.SportContentParser;
 import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.DateUtils;
 import ua.tools.escondido.tvprogram.data.adapter.ProgramsListAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class ChannelProgramListActivity extends ListActivity {
+public class ProgramListActivity extends ListActivity {
 
     private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new NovyiTvContentParser());
     private ProgressDialog dialog;
     private String channelName;
+    private String activityToBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +59,7 @@ public class ChannelProgramListActivity extends ListActivity {
 
         Intent intent = getIntent();
         channelName = intent.getStringExtra(Constants.CHANNEL_NAME);
+        activityToBack = intent.getStringExtra(Constants.BACK_ACTIVITY);
         Calendar calendar = Calendar.getInstance();
         String today = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, calendar.getTime());
         calendar.add(Calendar.DATE, 1);
@@ -86,7 +96,12 @@ public class ChannelProgramListActivity extends ListActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChannelProgramListActivity.this, HomeActivity.class);
+                Intent intent = null;
+                if("Home".equals(activityToBack)) {
+                    intent = new Intent(ProgramListActivity.this, HomeActivity.class);
+                } else if("TVProgram".equals(activityToBack)){
+                    intent = new Intent(ProgramListActivity.this, TVProgramActivity.class);
+                }
                 startActivity(intent);
             }
         });
@@ -105,6 +120,7 @@ public class ChannelProgramListActivity extends ListActivity {
             Intent intent = new Intent(this, ProgramInfoActivity.class);
             intent.putExtra(Constants.PROGRAM_INFO_PATH, programInfoPath);
             intent.putExtra(Constants.CHANNEL_NAME, channelName);
+            intent.putExtra(Constants.BACK_ACTIVITY, activityToBack);
             startActivity(intent);
         }
 
@@ -132,6 +148,24 @@ public class ChannelProgramListActivity extends ListActivity {
             channelProgramService = new ChannelProgramServiceImpl<>(this, new FiveChannelContentParser());
         }else if(getResources().getString(R.string.channel_k1).equalsIgnoreCase(channelName)){
             channelProgramService = new ChannelProgramServiceImpl<>(this, new KOneChannelContentParser());
+        }
+
+        else if(getResources().getString(R.string.tv_serials).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new SerialsContentParser());
+        }else if(getResources().getString(R.string.tv_entertainment).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new EntertainmentContentParser());
+        }else if(getResources().getString(R.string.tv_information).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new InformationContentParser());
+        }else if(getResources().getString(R.string.tv_sociopolitical).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new SociopoliticalContentParser());
+        }else if(getResources().getString(R.string.tv_show).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new ShowContentParser());
+        }else if(getResources().getString(R.string.tv_sport).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new SportContentParser());
+        }else if(getResources().getString(R.string.tv_kid).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new KidContentParser());
+        }else if(getResources().getString(R.string.tv_films).equalsIgnoreCase(channelName)){
+            channelProgramService = new ChannelProgramServiceImpl<>(this, new FilmsContentParser());
         }
 
         String[] data = new String[] {formattedDate};

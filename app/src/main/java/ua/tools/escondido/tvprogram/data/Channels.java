@@ -14,7 +14,17 @@ public enum Channels {
     UA_PERVYJ(HTTPS_BASE_PATH + "/channels/ua_pervyj/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
     INTER(HTTPS_BASE_PATH + "/channels/inter/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
     FIVE_KANAL(HTTPS_BASE_PATH + "/channels/5kanal/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
-    K1(HTTPS_BASE_PATH + "/channels/k1/", GET,ENCODING_1251,START_METRIC,"<noindex>");
+    K1(HTTPS_BASE_PATH + "/channels/k1/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+
+
+    TV_SERIALS(HTTPS_BASE_PATH + "/serial/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+    TV_FILMS(HTTPS_BASE_PATH + "/film/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+    TV_ENTERTAINMENT(HTTPS_BASE_PATH + "/entertainment/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+    TV_INFORMATION(HTTPS_BASE_PATH + "/information/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+    TV_SOCIOPOLITICAL(HTTPS_BASE_PATH + "/politika/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+    TV_SHOW(HTTPS_BASE_PATH + "/talk-show/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+    TV_SPORT(HTTPS_BASE_PATH + "/sport/", GET,ENCODING_1251,START_METRIC,"<noindex>"),
+    TV_KID(HTTPS_BASE_PATH + "/kids/", GET,ENCODING_1251,START_METRIC,"<noindex>");
 
     private String url;
     private String method;

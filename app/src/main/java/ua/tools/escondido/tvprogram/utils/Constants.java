@@ -4,6 +4,7 @@ package ua.tools.escondido.tvprogram.utils;
 public class Constants {
 
     public static final String CHANNEL_NAME = "CHANNEL_NAME";
+    public static final String BACK_ACTIVITY = "BACK_ACTIVITY";
     public static final String PROGRAM_INFO_PATH = "PROGRAM_INFO_PATH";
     public static final String HTTPS_BASE_PATH = "https://tvgid.ua";
     public static final String HTTP_BASE_PATH = "http://tvgid.ua";

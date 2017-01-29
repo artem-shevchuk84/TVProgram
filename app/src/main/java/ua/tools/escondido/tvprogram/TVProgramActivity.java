@@ -4,15 +4,16 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import ua.tools.escondido.tvprogram.utils.Constants;
 
-public class HomeActivity extends ListActivity{
+
+public class TVProgramActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class HomeActivity extends ListActivity{
         setContentView(R.layout.content_home);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.action_channels));
+        toolbar.setTitle(getResources().getString(R.string.action_tvprograms));
         toolbar.inflateMenu(R.menu.menu);
         toolbar.setOnMenuItemClickListener(
                 new Toolbar.OnMenuItemClickListener() {
@@ -30,16 +31,14 @@ public class HomeActivity extends ListActivity{
                     }
                 });
 
-        String[] channels = new String[] {getResources().getString(R.string.channel_novyj),
-                getResources().getString(R.string.channel_stb),
-                getResources().getString(R.string.channel_ictv),
-                getResources().getString(R.string.channel_one_plus_one),
-                getResources().getString(R.string.channel_mega),
-                getResources().getString(R.string.channel_ukraina),
-                getResources().getString(R.string.channel_ua_pervyj),
-                getResources().getString(R.string.channel_inter),
-                getResources().getString(R.string.channel_5kanal),
-                getResources().getString(R.string.channel_k1)
+        String[] channels = new String[] {getResources().getString(R.string.tv_serials),
+                getResources().getString(R.string.tv_films),
+                getResources().getString(R.string.tv_entertainment),
+                getResources().getString(R.string.tv_information),
+                getResources().getString(R.string.tv_sociopolitical),
+                getResources().getString(R.string.tv_show),
+                getResources().getString(R.string.tv_sport),
+                getResources().getString(R.string.tv_kid)
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -53,7 +52,7 @@ public class HomeActivity extends ListActivity{
 
         Intent intent = new Intent(this, ProgramListActivity.class);
         intent.putExtra(Constants.CHANNEL_NAME, item);
-        intent.putExtra(Constants.BACK_ACTIVITY, "Home");
+        intent.putExtra(Constants.BACK_ACTIVITY, "TVProgram");
         startActivity(intent);
     }
 
