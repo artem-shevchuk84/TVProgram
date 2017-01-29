@@ -60,8 +60,9 @@ public class ProgramListActivity extends ListActivity {
         Intent intent = getIntent();
         channelName = intent.getStringExtra(Constants.CHANNEL_NAME);
         activityToBack = intent.getStringExtra(Constants.BACK_ACTIVITY);
+        String today = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, DateUtils.getToday());
         Calendar calendar = Calendar.getInstance();
-        String today = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, calendar.getTime());
+        calendar.setTime(DateUtils.getToday());
         calendar.add(Calendar.DATE, 1);
         String tomorrow = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, calendar.getTime());
 
