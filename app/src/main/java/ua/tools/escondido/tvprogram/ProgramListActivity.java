@@ -69,22 +69,28 @@ public class ProgramListActivity extends ListActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(channelName);
 
-        Button todayBtn = (Button) findViewById(R.id.today);
+        final Button todayBtn = (Button) findViewById(R.id.today);
+        final Button tomorrowBtn = (Button) findViewById(R.id.tomorrow);
         todayBtn.setText(today);
-        todayBtn.setTextColor(ColorStateList.valueOf(Color.WHITE));
         todayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                todayBtn.setBackgroundResource(R.drawable.button_selected);
+                tomorrowBtn.setBackgroundResource(R.drawable.button_normal);
+                todayBtn.setTextColor(ColorStateList.valueOf(Color.WHITE));
+                tomorrowBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
                 String formattedDate = DateUtils.formatChannelAccessDate(DateUtils.getToday());
                 load(channelName, formattedDate);
             }
         });
-        Button tomorrowBtn = (Button) findViewById(R.id.tomorrow);
         tomorrowBtn.setText(tomorrow);
-        tomorrowBtn.setTextColor(ColorStateList.valueOf(Color.WHITE));
         tomorrowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tomorrowBtn.setBackgroundResource(R.drawable.button_selected);
+                todayBtn.setBackgroundResource(R.drawable.button_normal);
+                tomorrowBtn.setTextColor(ColorStateList.valueOf(Color.WHITE));
+                todayBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(DateUtils.getToday());
                 calendar.add(Calendar.DATE, 1);
