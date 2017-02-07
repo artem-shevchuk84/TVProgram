@@ -1,6 +1,5 @@
 package ua.tools.escondido.tvprogram;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,27 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
 import ua.tools.escondido.tvprogram.services.ChannelProgramService;
 import ua.tools.escondido.tvprogram.services.impl.ChannelProgramServiceImpl;
-import ua.tools.escondido.tvprogram.services.parser.FiveChannelContentParser;
-import ua.tools.escondido.tvprogram.services.parser.ICTVContentParser;
-import ua.tools.escondido.tvprogram.services.parser.InterContentParser;
-import ua.tools.escondido.tvprogram.services.parser.KOneChannelContentParser;
-import ua.tools.escondido.tvprogram.services.parser.MegaContentParser;
-import ua.tools.escondido.tvprogram.services.parser.NovyiTvContentParser;
-import ua.tools.escondido.tvprogram.services.parser.OnePlusOneContentParser;
-import ua.tools.escondido.tvprogram.services.parser.StbContentParser;
-import ua.tools.escondido.tvprogram.services.parser.UAPershiyContentParser;
-import ua.tools.escondido.tvprogram.services.parser.UkrainaTVContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.EntertainmentContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.FilmsContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.InformationContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.KidContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.SerialsContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.ShowContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.SociopoliticalContentParser;
-import ua.tools.escondido.tvprogram.services.parser.tv.SportContentParser;
+import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
+import ua.tools.escondido.tvprogram.services.parser.tv.BaseTVContentParser;
 import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.DateUtils;
 import ua.tools.escondido.tvprogram.data.adapter.ProgramsListAdapter;
@@ -47,7 +31,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ProgramListActivity extends ListActivity {
 
-    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new NovyiTvContentParser());
+    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new ChannelContentParser());
     private ProgressDialog dialog;
     private String channelName;
     private String activityToBack;
@@ -134,46 +118,55 @@ public class ProgramListActivity extends ListActivity {
     }
 
     private void load(String channelName, String formattedDate) {
-        channelProgramService = new ChannelProgramServiceImpl<>(this, new NovyiTvContentParser());
+        ChannelContentParser channelContentParser = new ChannelContentParser();
         if(getResources().getString(R.string.channel_novyj).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new NovyiTvContentParser());
+            channelContentParser.setChannels(Channels.NOVIY_CANAL);
         }else if(getResources().getString(R.string.channel_stb).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new StbContentParser());
+            channelContentParser.setChannels(Channels.STB);
         }else if(getResources().getString(R.string.channel_ictv).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new ICTVContentParser());
+            channelContentParser.setChannels(Channels.ICTV);
         }else if(getResources().getString(R.string.channel_one_plus_one).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new OnePlusOneContentParser());
+            channelContentParser.setChannels(Channels.ONE_PLUS_ONE);
         }else if(getResources().getString(R.string.channel_mega).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new MegaContentParser());
+            channelContentParser.setChannels(Channels.MEGA);
         }else if(getResources().getString(R.string.channel_ukraina).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new UkrainaTVContentParser());
+            channelContentParser.setChannels(Channels.UKRAINA);
         }else if(getResources().getString(R.string.channel_ua_pervyj).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new UAPershiyContentParser());
+            channelContentParser.setChannels(Channels.UA_PERVYJ);
         }else if(getResources().getString(R.string.channel_inter).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new InterContentParser());
+            channelContentParser.setChannels(Channels.INTER);
         }else if(getResources().getString(R.string.channel_5kanal).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new FiveChannelContentParser());
+            channelContentParser.setChannels(Channels.FIVE_KANAL);
         }else if(getResources().getString(R.string.channel_k1).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new KOneChannelContentParser());
+            channelContentParser.setChannels(Channels.K1);
         }
 
         else if(getResources().getString(R.string.tv_serials).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new SerialsContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_SERIALS);
         }else if(getResources().getString(R.string.tv_entertainment).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new EntertainmentContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_ENTERTAINMENT);
         }else if(getResources().getString(R.string.tv_information).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new InformationContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_INFORMATION);
         }else if(getResources().getString(R.string.tv_sociopolitical).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new SociopoliticalContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_SOCIOPOLITICAL);
         }else if(getResources().getString(R.string.tv_show).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new ShowContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_SHOW);
         }else if(getResources().getString(R.string.tv_sport).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new SportContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_SPORT);
         }else if(getResources().getString(R.string.tv_kid).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new KidContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_KID);
         }else if(getResources().getString(R.string.tv_films).equalsIgnoreCase(channelName)){
-            channelProgramService = new ChannelProgramServiceImpl<>(this, new FilmsContentParser());
+            channelContentParser = new BaseTVContentParser();
+            channelContentParser.setChannels(Channels.TV_FILMS);
         }
+        channelProgramService = new ChannelProgramServiceImpl<>(this, channelContentParser);
 
         String[] data = new String[] {formattedDate};
         try {

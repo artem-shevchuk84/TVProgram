@@ -11,4 +11,7 @@ public class Constants {
     public static final String START_METRIC = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"99%\" id=\"container\">";
     public static final String ENCODING_1251 = "windows-1251";
     public static final String GET = "GET";
+    public static final String NEWS_INFO_PATH = "NEWS_INFO_PATH";
+    public static final String NEWS_TITLE = "NEWS_TITLE";
+    public static final String NEWS_IMAGE = "NEWS_IMAGE";
 }

@@ -23,8 +23,14 @@ import java.util.List;
 
 public class ChannelContentParser {
 
+    private Channels channels = Channels.NOVIY_CANAL;
+
+    public void setChannels(Channels channels) {
+        this.channels = channels;
+    }
+
     public Channels getChannel(){
-        return null;
+        return channels;
     }
 
     public List<ProgramEvent> getPrograms(String content){

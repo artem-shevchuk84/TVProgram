@@ -62,4 +62,34 @@ public class NewsParser {
         }
         return news;
     }
+
+    public String parseNewsDescription(String content){
+        content = content.substring(content.indexOf("<div id=\"ncnt\">"), content.indexOf("<div id=\"error-warning\">"));
+        content = content + "</div></div></div>";
+        return content;
+    }
+
+    public Integer getPageCount(String content) {
+        Integer result = 0;
+        Integer index = content.indexOf("<div class=\"pagebar\">");
+        if (index != -1) {
+            String pagebarContext = content.substring(index);
+            pagebarContext = pagebarContext.substring(0, pagebarContext.indexOf("</div>")).concat("</div>");
+            pagebarContext = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + pagebarContext;
+
+            try {
+                DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                InputSource is = new InputSource();
+                is.setCharacterStream(new StringReader(pagebarContext));
+                Document doc = db.parse(is);
+
+                XPath xPath = XPathFactory.newInstance().newXPath();
+                result = ((NodeList) xPath.compile("//a").evaluate(doc, XPathConstants.NODESET)).getLength() - 1;
+            } catch (ParserConfigurationException | IOException | XPathExpressionException | SAXException e) {
+                //TODO: add log
+            }
+        }
+
+        return result;
+    }
 }

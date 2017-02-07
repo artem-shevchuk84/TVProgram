@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ import ua.tools.escondido.tvprogram.data.News;
 import ua.tools.escondido.tvprogram.services.NewsService;
 import ua.tools.escondido.tvprogram.services.impl.NewsServiceImpl;
 import ua.tools.escondido.tvprogram.data.adapter.NewsListAdapter;
+import ua.tools.escondido.tvprogram.utils.Constants;
 
 public class NewsActivity extends ListActivity{
 
@@ -47,6 +50,20 @@ public class NewsActivity extends ListActivity{
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        News news = (News) getListAdapter().getItem(position);
+        String newsInfoPath = news.getLink();
+        if(newsInfoPath != null){
+            Intent intent = new Intent(this, NewsInfoActivity.class);
+            intent.putExtra(Constants.NEWS_INFO_PATH, newsInfoPath);
+            intent.putExtra(Constants.NEWS_TITLE, news.getTitle());
+            intent.putExtra(Constants.NEWS_IMAGE, news.getImagePath());
+            startActivity(intent);
         }
     }
 

@@ -11,12 +11,12 @@ import ua.tools.escondido.tvprogram.utils.Constants;
 
 public class NewsLoader {
 
-    public String load() {
+    public String load(String path) {
         StringBuilder content = new StringBuilder();
         HttpURLConnection conn = null;
         BufferedReader input = null;
         try {
-            URL url = new URL(Constants.HTTPS_BASE_PATH + "/i/uploads/news.xml");
+            URL url = new URL(path);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 

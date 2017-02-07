@@ -21,4 +21,12 @@ public class NewsServiceTest {
         List<News> newsList = newsService.getNews();
         assertThat(newsList, Is.is(IsNull.notNullValue()));
     }
+
+    @Test
+    public void loadNewsInfoTest(){
+        NewsService newsService = new NewsServiceImpl();
+        News news = newsService.
+                getNewsInfo("//informers.ukr.net/informer.php?url=%2F%2Ftv.ukr.net%2Ffotor%2F06022017%2F84683/p0/");
+        assertThat(news, Is.is(IsNull.notNullValue()));
+    }
 }

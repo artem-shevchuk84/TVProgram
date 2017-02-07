@@ -33,6 +33,11 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+            android:name=".NewsInfoActivity"
+            android:label="@string/action_news"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".ProgramInfoActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
