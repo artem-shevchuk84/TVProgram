@@ -62,7 +62,7 @@ public class ChannelProgramServiceTest {
     @Test
     public void getChannelProgramInfoTest() throws Exception {
         channelProgramService = new ChannelProgramServiceImpl<>(context, new ChannelContentParser());
-        ProgramInfo programInfo = channelProgramService.getProgramInfo("/entertainment/39555/abzats/");
+        ProgramInfo programInfo = channelProgramService.getProgramInfo("/entertainment/29096/mastershef/");
         assertThat(programInfo, Is.is(IsNull.notNullValue()));
         programInfo = channelProgramService.getProgramInfo("/kids/44709/horton/");
         assertThat(programInfo, Is.is(IsNull.notNullValue()));

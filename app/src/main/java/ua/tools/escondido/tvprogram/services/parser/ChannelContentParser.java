@@ -92,7 +92,7 @@ public class ChannelContentParser {
             Node programNameNode = (Node) xPath.compile("/table/tr/td/table/tr/td/h1").evaluate(doc, XPathConstants.NODE);
             programInfo.setProgramName(programNameNode.getTextContent());
 
-            String expression = ".//div[@id='ncnt']/p";
+            String expression = ".//div[@id='ncnt']";
             Node baseNode = (Node) xPath.compile(expression).evaluate(doc, XPathConstants.NODE);
             programInfo.setProgramDescription(baseNode.getTextContent());
 
