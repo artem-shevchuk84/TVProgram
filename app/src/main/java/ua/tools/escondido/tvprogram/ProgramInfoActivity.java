@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import ua.tools.escondido.tvprogram.data.ProgramInfo;
@@ -23,7 +24,6 @@ import ua.tools.escondido.tvprogram.utils.Constants;
 
 public class ProgramInfoActivity extends Activity {
 
-    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new ChannelContentParser());
     private ProgressDialog dialog;
     private String activityToBack;
 
@@ -56,7 +56,7 @@ public class ProgramInfoActivity extends Activity {
             //ProgramInfo programInfo = getStub();
             ProgramInfo programInfo = new LoadProgramInfoData().execute(new String[] {programInfoPath}).get();
             if (programInfo != null) {
-                Picasso.with(getApplicationContext())
+                Picasso.with(getBaseContext())
                         .load(programInfo.getImagePath())
                         .error(R.drawable.ic_menu_gallery)
                         .into(programImage);
@@ -74,6 +74,7 @@ public class ProgramInfoActivity extends Activity {
 
         @Override
         protected ProgramInfo doInBackground(String... params) {
+            ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(getBaseContext(), new ChannelContentParser());
             return channelProgramService.getProgramInfo(params[0]);
         }
 

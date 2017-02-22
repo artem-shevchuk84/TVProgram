@@ -23,8 +23,9 @@ import java.util.List;
 
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
 import ua.tools.escondido.tvprogram.mock.TVMockContext;
+import ua.tools.escondido.tvprogram.services.Cacheable;
+import ua.tools.escondido.tvprogram.services.impl.InternalStorageCache;
 import ua.tools.escondido.tvprogram.utils.DateUtils;
-import ua.tools.escondido.tvprogram.utils.InternalStorage;
 
 import static org.junit.Assert.assertThat;
 
@@ -32,6 +33,7 @@ import static org.junit.Assert.assertThat;
 public class UtilsTest extends InstrumentationTestCase{
 
     private static Context context;
+    Cacheable<List<ProgramEvent>> programSchedulCache = new InternalStorageCache<>();
 
     @BeforeClass
     public static void setup(){
@@ -67,9 +69,9 @@ public class UtilsTest extends InstrumentationTestCase{
             event.setProgramInfoPath("/entertainment/295608/revizor-7/");
             programEvents.add(event);
         }
-        InternalStorage.writeObject(context, "KEY", programEvents);
+        programSchedulCache.writeObject(context, "KEY", programEvents);
 
-        List<ProgramEvent> dataFromCache = (List<ProgramEvent> )InternalStorage.readObject(context, "KEY");
+        List<ProgramEvent> dataFromCache = programSchedulCache.readObject(context, "KEY", true);
         assertThat(programEvents, IsEqual.equalTo(dataFromCache));
     }
 

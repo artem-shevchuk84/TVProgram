@@ -38,7 +38,7 @@ public class NewsInfoActivity extends Activity{
         TextView newsTitle = (TextView) findViewById(R.id.program_title);
         TextView newsContent = (TextView) findViewById(R.id.program_description);
 
-        Picasso.with(getApplicationContext())
+        Picasso.with(getBaseContext())
                 .load(image)
                 .error(R.drawable.ic_menu_gallery)
                 .into(newsImage);

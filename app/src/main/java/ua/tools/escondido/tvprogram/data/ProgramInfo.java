@@ -1,11 +1,13 @@
 package ua.tools.escondido.tvprogram.data;
 
 
-public class ProgramInfo {
+import java.io.Serializable;
 
-    private String programName;
-    private String imagePath;
-    private String programDescription;
+public class ProgramInfo implements Serializable{
+
+    private String programName = "";
+    private String imagePath = "";
+    private String programDescription = "";
 
     public String getProgramName() {
         return programName;

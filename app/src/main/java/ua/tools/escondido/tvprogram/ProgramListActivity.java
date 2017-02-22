@@ -31,7 +31,8 @@ import java.util.concurrent.ExecutionException;
 
 public class ProgramListActivity extends ListActivity {
 
-    private ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(this, new ChannelContentParser());
+    private ChannelProgramService channelProgramService =
+            new ChannelProgramServiceImpl<>(getBaseContext(), new ChannelContentParser());
     private ProgressDialog dialog;
     private String channelName;
     private String activityToBack;
@@ -166,7 +167,7 @@ public class ProgramListActivity extends ListActivity {
             channelContentParser = new BaseTVContentParser();
             channelContentParser.setChannels(Channels.TV_FILMS);
         }
-        channelProgramService = new ChannelProgramServiceImpl<>(this, channelContentParser);
+        channelProgramService = new ChannelProgramServiceImpl<>(getBaseContext(), channelContentParser);
 
         String[] data = new String[] {formattedDate};
         try {
