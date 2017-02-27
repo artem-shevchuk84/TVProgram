@@ -1,7 +1,9 @@
 package ua.tools.escondido.tvprogram;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -15,8 +17,10 @@ import android.widget.ListView;
 
 import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
+import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
 import ua.tools.escondido.tvprogram.services.ChannelProgramService;
 import ua.tools.escondido.tvprogram.services.impl.ChannelProgramServiceImpl;
+import ua.tools.escondido.tvprogram.services.loader.async.ProgramListDataLoader;
 import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
 import ua.tools.escondido.tvprogram.services.parser.tv.BaseTVContentParser;
 import ua.tools.escondido.tvprogram.utils.Constants;
@@ -31,9 +35,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ProgramListActivity extends ListActivity {
 
-    private ChannelProgramService channelProgramService =
-            new ChannelProgramServiceImpl<>(getBaseContext(), new ChannelContentParser());
-    private ProgressDialog dialog;
+    private ChannelProgramService channelProgramService;
     private String channelName;
     private String activityToBack;
 
@@ -170,47 +172,13 @@ public class ProgramListActivity extends ListActivity {
         channelProgramService = new ChannelProgramServiceImpl<>(getBaseContext(), channelContentParser);
 
         String[] data = new String[] {formattedDate};
-        try {
-            dialog = new ProgressDialog(this);
-            //List<ProgramEvent> programEvents = getStub();
-            List<ProgramEvent> programEvents = new LoadChannelData().execute(data).get();
-            setListAdapter(new ProgramsListAdapter(this, programEvents));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+
+        new ProgramListDataLoader(this, channelProgramService, new AsyncTaskCallback<List<ProgramEvent>>() {
+            @Override
+            public void run(List<ProgramEvent> result) {
+                setListAdapter(new ProgramsListAdapter(getBaseContext(), result));
+            }
+        }).execute(data);
     }
 
-    private List<ProgramEvent> getStub() throws InterruptedException,ExecutionException {
-        List<ProgramEvent> programEvents = new ArrayList<>();
-        for (int i=0;i<20;i++){
-            ProgramEvent event = new ProgramEvent();
-            event.setName("Test Program " + i);
-            event.setTime("08:"+(10+i));
-            event.setProgramInfoPath("/entertainment/295608/revizor-7/");
-            programEvents.add(event);
-        }
-        return programEvents;
-    }
-    class LoadChannelData extends AsyncTask<String, Void, List<ProgramEvent>>{
-
-        @Override
-        protected List<ProgramEvent> doInBackground(String... params) {
-            return channelProgramService.getChannelProgram(params[0]);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog.setMessage("Processing...");
-            dialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(List<ProgramEvent> programEvents) {
-            super.onPostExecute(programEvents);
-            dialog.dismiss();
-        }
-    }
 }

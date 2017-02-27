@@ -36,7 +36,7 @@ public class ChannelProgramServiceImpl<T extends ChannelContentParser>
     }
 
     @Override
-    public List<ProgramEvent> getChannelProgram(String date){
+    public List<ProgramEvent> getChannelProgram(String date) {
         Channels channel = channelContentParser.getChannel();
         List<ProgramEvent> resultData = getCachedData(channel, date);
         if(resultData == null){

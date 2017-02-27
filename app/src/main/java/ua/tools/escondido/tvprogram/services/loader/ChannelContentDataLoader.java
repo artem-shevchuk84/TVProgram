@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ChannelContentDataLoader {
@@ -42,8 +43,9 @@ public class ChannelContentDataLoader {
         }
         finally {
             try {
-                assert input != null;
-                input.close();
+                if(input != null) {
+                    input.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -80,8 +82,9 @@ public class ChannelContentDataLoader {
             e.printStackTrace();
         } finally {
             try {
-                assert input != null;
-                input.close();
+                if(input != null) {
+                    input.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

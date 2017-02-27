@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class ProgramInfo implements Serializable{
 
     private String programName = "";
-    private String imagePath = "";
+    private String imagePath;
     private String programDescription = "";
 
     public String getProgramName() {

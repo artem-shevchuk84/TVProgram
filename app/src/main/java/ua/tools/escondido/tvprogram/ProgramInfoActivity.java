@@ -2,7 +2,9 @@ package ua.tools.escondido.tvprogram;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,18 +15,18 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import ua.tools.escondido.tvprogram.data.ProgramInfo;
+import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
 import ua.tools.escondido.tvprogram.services.ChannelProgramService;
 import ua.tools.escondido.tvprogram.services.impl.ChannelProgramServiceImpl;
+import ua.tools.escondido.tvprogram.services.loader.async.ProgramInfoDataLoader;
 import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
 import ua.tools.escondido.tvprogram.utils.Constants;
 
 public class ProgramInfoActivity extends Activity {
 
-    private ProgressDialog dialog;
     private String activityToBack;
 
     @Override
@@ -36,9 +38,9 @@ public class ProgramInfoActivity extends Activity {
         final String channelName = intent.getStringExtra(Constants.CHANNEL_NAME);
         activityToBack = intent.getStringExtra(Constants.BACK_ACTIVITY);
 
-        ImageView programImage = (ImageView) findViewById(R.id.program_image);
-        TextView name = (TextView) findViewById(R.id.program_title);
-        TextView description = (TextView) findViewById(R.id.program_description);
+        final ImageView programImage = (ImageView) findViewById(R.id.program_image);
+        final TextView name = (TextView) findViewById(R.id.program_title);
+        final TextView description = (TextView) findViewById(R.id.program_description);
 
         Button backBtn = (Button) findViewById(R.id.toolbar_btn_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,52 +53,20 @@ public class ProgramInfoActivity extends Activity {
             }
         });
 
-        try {
-            dialog = new ProgressDialog(this);
-            //ProgramInfo programInfo = getStub();
-            ProgramInfo programInfo = new LoadProgramInfoData().execute(new String[] {programInfoPath}).get();
-            if (programInfo != null) {
-                Picasso.with(getBaseContext())
-                        .load(programInfo.getImagePath())
-                        .error(R.drawable.ic_menu_gallery)
-                        .into(programImage);
+        new ProgramInfoDataLoader(this, new AsyncTaskCallback<ProgramInfo>() {
+            @Override
+            public void run(ProgramInfo programInfo) {
+                if(programInfo.getImagePath() != null && !programInfo.getImagePath().isEmpty()) {
+                    Picasso.with(getBaseContext())
+                            .load(programInfo.getImagePath())
+                            .error(R.drawable.ic_menu_gallery)
+                            .into(programImage);
+                }
                 name.setText(programInfo.getProgramName());
                 description.setText(programInfo.getProgramDescription());
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        }).execute(programInfoPath);
+
     }
 
-    class LoadProgramInfoData extends AsyncTask<String, Void ,ProgramInfo> {
-
-        @Override
-        protected ProgramInfo doInBackground(String... params) {
-            ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(getBaseContext(), new ChannelContentParser());
-            return channelProgramService.getProgramInfo(params[0]);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog.setMessage("Processing...");
-            dialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(ProgramInfo programInfo) {
-            super.onPostExecute(programInfo);
-            dialog.dismiss();
-        }
-    }
-
-    ProgramInfo getStub() throws InterruptedException,ExecutionException {
-        ProgramInfo programInfo = new ProgramInfo();
-        programInfo.setProgramName("Test program");
-        programInfo.setImagePath("https://tvgid.ua/i/uploads/Image/1(12830).jpg");
-        programInfo.setProgramDescription("\"Ревізор\" - оригінальне телевізійне соціальне реаліті-шоу Нового каналу. Знімальна група проекту разом із ведучим Вадимом Абрамовим і шеф-редактором Анною Жижею проводять перевірки готелів, ресторанів, супермаркетів, інших точок сфери обслуговування.");
-        return programInfo;
-    }
 }
