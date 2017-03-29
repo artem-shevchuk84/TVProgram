@@ -1,14 +1,13 @@
 package ua.tools.escondido.tvprogram.services.loader;
 
-import ua.tools.escondido.tvprogram.data.Channels;
-import ua.tools.escondido.tvprogram.utils.Constants;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+
+import ua.tools.escondido.tvprogram.data.Channels;
+import ua.tools.escondido.tvprogram.utils.Constants;
 
 public class ChannelContentDataLoader {
 

@@ -2,17 +2,17 @@ package ua.tools.escondido.tvprogram.services.impl;
 
 import android.content.Context;
 
+import java.io.IOException;
+import java.util.List;
+
 import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
 import ua.tools.escondido.tvprogram.data.ProgramInfo;
 import ua.tools.escondido.tvprogram.services.Cacheable;
 import ua.tools.escondido.tvprogram.services.ChannelProgramService;
-import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
 import ua.tools.escondido.tvprogram.services.loader.ChannelContentDataLoader;
+import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
 import ua.tools.escondido.tvprogram.utils.DateUtils;
-
-import java.io.IOException;
-import java.util.List;
 
 public class ChannelProgramServiceImpl<T extends ChannelContentParser>
         implements ChannelProgramService{
