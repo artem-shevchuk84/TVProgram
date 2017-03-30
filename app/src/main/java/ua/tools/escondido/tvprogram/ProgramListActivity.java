@@ -136,6 +136,32 @@ public class ProgramListActivity extends ListActivity {
             channelContentParser.setChannels(Channels.FIVE_KANAL);
         }else if(getResources().getString(R.string.channel_k1).equalsIgnoreCase(channelName)){
             channelContentParser.setChannels(Channels.K1);
+        }else if(getResources().getString(R.string.channel_ntn).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.NTN);
+        }else if(getResources().getString(R.string.channel_tet).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.TET);
+        }else if(getResources().getString(R.string.channel_two_plus_two).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.TWO_PLUS_TWO);
+        }else if(getResources().getString(R.string.channel_piksel).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.PIKSEL);
+        }else if(getResources().getString(R.string.channel_nlo).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.NLO);
+        }else if(getResources().getString(R.string.channel_enterfilm).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.ENTERFILM);
+        }else if(getResources().getString(R.string.channel_m1).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.M1);
+        }else if(getResources().getString(R.string.channel_k2).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.K2);
+        }else if(getResources().getString(R.string.channel_zoom).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.ZOOM);
+        }else if(getResources().getString(R.string.channel_espresso).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.ESPRESSO);
+        }else if(getResources().getString(R.string.channel_tonis).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.TONIS);
+        }else if(getResources().getString(R.string.channel_football1).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.FOOTBALL1);
+        }else if(getResources().getString(R.string.channel_football2).equalsIgnoreCase(channelName)){
+            channelContentParser.setChannels(Channels.FOOTBALL2);
         }
 
         else if(getResources().getString(R.string.tv_serials).equalsIgnoreCase(channelName)){

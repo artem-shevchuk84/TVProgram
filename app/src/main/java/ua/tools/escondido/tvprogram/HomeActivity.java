@@ -39,7 +39,20 @@ public class HomeActivity extends ListActivity{
                 getResources().getString(R.string.channel_ua_pervyj),
                 getResources().getString(R.string.channel_inter),
                 getResources().getString(R.string.channel_5kanal),
-                getResources().getString(R.string.channel_k1)
+                getResources().getString(R.string.channel_k1),
+                getResources().getString(R.string.channel_ntn),
+                getResources().getString(R.string.channel_tet),
+                getResources().getString(R.string.channel_two_plus_two),
+                getResources().getString(R.string.channel_piksel),
+                getResources().getString(R.string.channel_nlo),
+                getResources().getString(R.string.channel_enterfilm),
+                getResources().getString(R.string.channel_m1),
+                getResources().getString(R.string.channel_k2),
+                getResources().getString(R.string.channel_zoom),
+                getResources().getString(R.string.channel_espresso),
+                getResources().getString(R.string.channel_tonis),
+                getResources().getString(R.string.channel_football1),
+                getResources().getString(R.string.channel_football2)
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

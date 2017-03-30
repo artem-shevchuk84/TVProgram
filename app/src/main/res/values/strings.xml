@@ -22,6 +22,19 @@
     <string name="channel.inter">Інтер</string>
     <string name="channel.5kanal">5 канал</string>
     <string name="channel.k1">К1</string>
+    <string name="channel.ntn">НТН</string>
+    <string name="channel.tet">ТЕТ</string>
+    <string name="channel.two_plus_two">2+2</string>
+    <string name="channel.piksel">Піксель</string>
+    <string name="channel.nlo">НЛО TV</string>
+    <string name="channel.enterfilm">Enter-фільм</string>
+    <string name="channel.m1">M1</string>
+    <string name="channel.k2">К2</string>
+    <string name="channel.zoom">Zoom</string>
+    <string name="channel.espresso">Еспресо TV</string>
+    <string name="channel.tonis">Tonis</string>
+    <string name="channel.football1">Футбол 1</string>
+    <string name="channel.football2">Футбол 2</string>
 
     <string name="tv_serials">Серіали</string>
     <string name="tv_films">Фільми</string>
