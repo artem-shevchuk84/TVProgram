@@ -10,20 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import ua.tools.escondido.tvprogram.data.News;
+import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
 import ua.tools.escondido.tvprogram.services.NewsService;
 import ua.tools.escondido.tvprogram.services.impl.NewsServiceImpl;
 import ua.tools.escondido.tvprogram.data.adapter.NewsListAdapter;
+import ua.tools.escondido.tvprogram.services.loader.async.NewsListDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
 
 public class NewsActivity extends ListActivity{
-
-    private ProgressDialog dialog;
-    private NewsService newsService = new NewsServiceImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +37,21 @@ public class NewsActivity extends ListActivity{
                         return onOptionsItemSelected(item);
                     }
                 });
-        dialog = new ProgressDialog(this);
-        List<News> news = null;
-        try {
-            //news = getStub();
-            news = new LoadNews().execute().get();
-            setListAdapter(new NewsListAdapter(this, news));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+
+
+        new NewsListDataLoader(this, new AsyncTaskCallback<List<News>>() {
+            @Override
+            public void run(List<News> result) {
+                setListAdapter(new NewsListAdapter(getBaseContext(), result));
+            }
+
+            @Override
+            public void handleError() {
+                Intent intent = new Intent(NewsActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        }).execute();
+
     }
 
 
@@ -89,37 +90,4 @@ public class NewsActivity extends ListActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    public List<News> getStub() throws InterruptedException,ExecutionException {
-        List<News> result = new ArrayList<>();
-        for (int i = 0; i<10; i++){
-            News news = new News();
-            news.setTitle("Very long Title to validate how this layout looks for "+i);
-            news.setDescription("Some Description what does not mean anything in context of current " +
-                    "task and just provide us ability to validate it for "+i);
-            news.setImagePath("http://tv.ukr.net/i/uploads/20161102/pr_2C30w.jpg");
-            result.add(news);
-        }
-        return result;
-    }
-
-    class LoadNews extends AsyncTask<Void, Void ,List<News>> {
-
-        @Override
-        protected List<News> doInBackground(Void... params) {
-            return newsService.getNews();
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog.setMessage("Processing...");
-            dialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(List<News> news) {
-            super.onPostExecute(news);
-            dialog.dismiss();
-        }
-    }
 }

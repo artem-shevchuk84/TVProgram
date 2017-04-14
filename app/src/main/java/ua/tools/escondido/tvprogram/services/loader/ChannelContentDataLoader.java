@@ -87,7 +87,9 @@ public class ChannelContentDataLoader {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            conn.disconnect();
+            if(conn != null) {
+                conn.disconnect();
+            }
         }
         return content;
     }

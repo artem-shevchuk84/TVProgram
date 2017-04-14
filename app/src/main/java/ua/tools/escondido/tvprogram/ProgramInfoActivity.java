@@ -37,10 +37,7 @@ public class ProgramInfoActivity extends Activity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProgramInfoActivity.this, ProgramListActivity.class);
-                intent.putExtra(Constants.CHANNEL_NAME, channelName);
-                intent.putExtra(Constants.BACK_ACTIVITY, activityToBack);
-                startActivity(intent);
+                goBack(channelName);
             }
         });
 
@@ -56,8 +53,21 @@ public class ProgramInfoActivity extends Activity {
                 name.setText(programInfo.getProgramName());
                 description.setText(programInfo.getProgramDescription());
             }
+
+            @Override
+            public void handleError() {
+                goBack(channelName);
+            }
+
         }).execute(programInfoPath);
 
+    }
+
+    private void goBack(String channelName) {
+        Intent intent = new Intent(ProgramInfoActivity.this, ProgramListActivity.class);
+        intent.putExtra(Constants.CHANNEL_NAME, channelName);
+        intent.putExtra(Constants.BACK_ACTIVITY, activityToBack);
+        startActivity(intent);
     }
 
 }

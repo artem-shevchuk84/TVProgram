@@ -14,6 +14,9 @@ public class NewsServiceImpl implements NewsService {
     private NewsLoader loader = new NewsLoader();
     private NewsParser parser = new NewsParser();
 
+    public NewsServiceImpl() {
+    }
+
     @Override
     public List<News> getNews() {
         String content = loader.load(Constants.HTTPS_BASE_PATH + "/i/uploads/news.xml");

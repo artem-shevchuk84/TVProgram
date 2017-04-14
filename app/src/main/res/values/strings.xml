@@ -6,7 +6,8 @@
 
     <string name="progressbar.loading.text">Іде загрузка…</string>
 
-    <string name="alert.error.no_internet">Помилка з"єднання! \nПеревірте підключення до інтернету</string>
+    <string name="alert.error.no_internet">Помилка з\'єднання! \nПеревірте підключення до інтернету.</string>
+    <string name="alert.btn.close">Закрити</string>
 
     <string name="action_channels">Канали</string>
     <string name="action_tvprograms">TV прoграма</string>

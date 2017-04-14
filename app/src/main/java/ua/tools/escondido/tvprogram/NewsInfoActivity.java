@@ -14,9 +14,15 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import ua.tools.escondido.tvprogram.data.News;
+import ua.tools.escondido.tvprogram.data.adapter.NewsListAdapter;
+import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
 import ua.tools.escondido.tvprogram.services.NewsService;
 import ua.tools.escondido.tvprogram.services.impl.NewsServiceImpl;
+import ua.tools.escondido.tvprogram.services.loader.async.NewsInfoDataLoader;
+import ua.tools.escondido.tvprogram.services.loader.async.NewsListDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
 
 
@@ -36,7 +42,7 @@ public class NewsInfoActivity extends Activity{
 
         ImageView newsImage = (ImageView) findViewById(R.id.program_image);
         TextView newsTitle = (TextView) findViewById(R.id.program_title);
-        TextView newsContent = (TextView) findViewById(R.id.program_description);
+        final TextView newsContent = (TextView) findViewById(R.id.program_description);
 
         Picasso.with(getBaseContext())
                 .load(image)
@@ -53,17 +59,24 @@ public class NewsInfoActivity extends Activity{
             }
         });
 
-        try{
-            dialog = new ProgressDialog(this);
-            News newsInfo = new LoadNewsInfoData().execute(new String[] {newsInfoPath}).get();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                newsContent.setText(Html.fromHtml(newsInfo.getDescription(), Html.FROM_HTML_MODE_LEGACY));
-            } else{
-                newsContent.setText(Html.fromHtml(newsInfo.getDescription()));
+        dialog = new ProgressDialog(this);
+        new NewsInfoDataLoader(this, new AsyncTaskCallback<News>() {
+            @Override
+            public void run(News result) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    newsContent.setText(Html.fromHtml(result.getDescription(), Html.FROM_HTML_MODE_LEGACY));
+                } else{
+                    newsContent.setText(Html.fromHtml(result.getDescription()));
+                }
             }
-        } catch (Exception e){
 
-        }
+            @Override
+            public void handleError() {
+                Intent intent = new Intent(NewsInfoActivity.this, NewsActivity.class);
+                startActivity(intent);
+            }
+        }).execute(newsInfoPath);
+
     }
 
     class LoadNewsInfoData extends AsyncTask<String, Void ,News> {

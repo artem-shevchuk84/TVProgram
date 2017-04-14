@@ -31,12 +31,15 @@ public class NewsLoader {
             e.printStackTrace();
         } finally {
             try {
-                assert input != null;
-                input.close();
+                if(input != null) {
+                    input.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            conn.disconnect();
+            if(conn != null) {
+                conn.disconnect();
+            }
         }
         return content.toString();
     }

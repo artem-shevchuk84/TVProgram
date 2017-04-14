@@ -84,13 +84,7 @@ public class ProgramListActivity extends ListActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = null;
-                if("Home".equals(activityToBack)) {
-                    intent = new Intent(ProgramListActivity.this, HomeActivity.class);
-                } else if("TVProgram".equals(activityToBack)){
-                    intent = new Intent(ProgramListActivity.this, TVProgramActivity.class);
-                }
-                startActivity(intent);
+                goBack();
             }
         });
 
@@ -98,6 +92,16 @@ public class ProgramListActivity extends ListActivity {
 
         load(channelName, formattedDate);
 
+    }
+
+    private void goBack() {
+        Intent intent = null;
+        if("Home".equals(activityToBack)) {
+            intent = new Intent(ProgramListActivity.this, HomeActivity.class);
+        } else if("TVProgram".equals(activityToBack)){
+            intent = new Intent(ProgramListActivity.this, TVProgramActivity.class);
+        }
+        startActivity(intent);
     }
 
     @Override
@@ -198,6 +202,12 @@ public class ProgramListActivity extends ListActivity {
             public void run(List<ProgramEvent> result) {
                 setListAdapter(new ProgramsListAdapter(getBaseContext(), result));
             }
+
+            @Override
+            public void handleError() {
+                goBack();
+            }
+
         }).execute(data);
     }
 
