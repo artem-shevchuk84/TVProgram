@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import ua.tools.escondido.tvprogram.services.NewsService;
 import ua.tools.escondido.tvprogram.services.impl.NewsServiceImpl;
 import ua.tools.escondido.tvprogram.services.loader.async.NewsInfoDataLoader;
 import ua.tools.escondido.tvprogram.services.loader.async.NewsListDataLoader;
+import ua.tools.escondido.tvprogram.services.parser.URLImageParser;
 import ua.tools.escondido.tvprogram.utils.Constants;
 
 
@@ -63,11 +65,15 @@ public class NewsInfoActivity extends Activity{
         new NewsInfoDataLoader(this, new AsyncTaskCallback<News>() {
             @Override
             public void run(News result) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                URLImageParser parser = new URLImageParser(newsContent, getBaseContext());
+                Spanned htmlSpan = Html.fromHtml(result.getDescription(), parser, null);
+                newsContent.setText(htmlSpan);
+
+/*                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     newsContent.setText(Html.fromHtml(result.getDescription(), Html.FROM_HTML_MODE_LEGACY));
                 } else{
                     newsContent.setText(Html.fromHtml(result.getDescription()));
-                }
+                }*/
             }
 
             @Override
