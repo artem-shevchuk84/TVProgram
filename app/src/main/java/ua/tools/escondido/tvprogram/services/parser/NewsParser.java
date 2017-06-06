@@ -66,7 +66,7 @@ public class NewsParser {
     public String parseNewsDescription(String content){
         content = content.substring(content.indexOf("<div id=\"ncnt\">"), content.indexOf("<div id=\"error-warning\">"));
         content = content + "</div></div></div>";
-        return content;
+        return content.replace("<strong>Читайте також: </strong>","");
     }
 
     public Integer getPageCount(String content) {
