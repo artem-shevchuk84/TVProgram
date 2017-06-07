@@ -68,7 +68,7 @@ public class TVProgramActivity extends ListActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.action_channels:
-                intent = new Intent(this, HomeActivity.class);
+                intent = new Intent(this, ChannelActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_tvprograms:

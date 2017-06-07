@@ -1,9 +1,7 @@
 package ua.tools.escondido.tvprogram;
 
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -14,8 +12,6 @@ import java.util.List;
 
 import ua.tools.escondido.tvprogram.data.News;
 import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
-import ua.tools.escondido.tvprogram.services.NewsService;
-import ua.tools.escondido.tvprogram.services.impl.NewsServiceImpl;
 import ua.tools.escondido.tvprogram.data.adapter.NewsListAdapter;
 import ua.tools.escondido.tvprogram.services.loader.async.NewsListDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
@@ -47,7 +43,7 @@ public class NewsActivity extends ListActivity{
 
             @Override
             public void handleError() {
-                Intent intent = new Intent(NewsActivity.this, HomeActivity.class);
+                Intent intent = new Intent(NewsActivity.this, ChannelActivity.class);
                 startActivity(intent);
             }
         }).execute();
@@ -73,7 +69,7 @@ public class NewsActivity extends ListActivity{
         Intent intent;
         switch (item.getItemId()) {
             case R.id.action_channels:
-                intent = new Intent(this, HomeActivity.class);
+                intent = new Intent(this, ChannelActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_tvprograms:

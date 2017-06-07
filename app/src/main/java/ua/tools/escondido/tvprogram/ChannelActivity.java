@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import ua.tools.escondido.tvprogram.utils.Constants;
 
-public class HomeActivity extends ListActivity{
+public class ChannelActivity extends ListActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class HomeActivity extends ListActivity{
 
         Intent intent = new Intent(this, ProgramListActivity.class);
         intent.putExtra(Constants.CHANNEL_NAME, item);
-        intent.putExtra(Constants.BACK_ACTIVITY, "Home");
+        intent.putExtra(Constants.BACK_ACTIVITY, "Channel");
         startActivity(intent);
     }
 
@@ -82,7 +82,7 @@ public class HomeActivity extends ListActivity{
         Intent intent;
         switch (item.getItemId()) {
             case R.id.action_channels:
-                intent = new Intent(this, HomeActivity.class);
+                intent = new Intent(this, ChannelActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_tvprograms:

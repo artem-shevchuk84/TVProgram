@@ -96,8 +96,8 @@ public class ProgramListActivity extends ListActivity {
 
     private void goBack() {
         Intent intent = null;
-        if("Home".equals(activityToBack)) {
-            intent = new Intent(ProgramListActivity.this, HomeActivity.class);
+        if("Channel".equals(activityToBack)) {
+            intent = new Intent(ProgramListActivity.this, ChannelActivity.class);
         } else if("TVProgram".equals(activityToBack)){
             intent = new Intent(ProgramListActivity.this, TVProgramActivity.class);
         }
