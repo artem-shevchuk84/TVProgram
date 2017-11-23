@@ -8,21 +8,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import ua.tools.escondido.tvprogram.utils.Constants;
 
 
-public class TVProgramActivity extends ListActivity {
+public class ProgramCategoryActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_home);
+        setContentView(R.layout.channels);
+
+        Button homeBtn = (Button) findViewById(R.id.toolbar_home);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goHome();
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.action_tvprograms));
-        toolbar.inflateMenu(R.menu.menu);
+        toolbar.setTitle(getResources().getString(R.string.title_categories));
         toolbar.setOnMenuItemClickListener(
                 new Toolbar.OnMenuItemClickListener() {
                     @Override
@@ -56,32 +64,8 @@ public class TVProgramActivity extends ListActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.action_channels:
-                intent = new Intent(this, ChannelActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_tvprograms:
-                intent = new Intent(this, TVProgramActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_news:
-                intent = new Intent(this, NewsActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    private void goHome() {
+        Intent intent = new Intent(ProgramCategoryActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

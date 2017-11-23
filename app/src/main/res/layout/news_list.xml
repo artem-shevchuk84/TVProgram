@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:a="http://schemas.android.com/apk/res/android"
+    a:layout_width="match_parent"
+    a:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/news_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="16sp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold">
+        a:id="@+id/news_title"
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:text=""
+        a:textSize="16sp"
+        a:textColor="@color/colorPrimary"
+        a:textStyle="bold">
     </TextView>
 
     <ImageView
-        android:id="@+id/news_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_menu_send"
-        android:layout_below="@id/news_title"
-        android:layout_alignParentLeft="true">
+        a:id="@+id/news_image"
+        a:layout_width="100dp"
+        a:layout_height="100dp"
+        a:layout_marginTop="4dp"
+        a:src="@drawable/ic_menu_send"
+        a:layout_below="@id/news_title"
+        a:layout_alignParentLeft="true">
     </ImageView>
 
     <TextView
-        android:id="@+id/news_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="15sp"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/news_image"
-        android:layout_below="@id/news_title"
-        android:layout_alignParentRight="true">
+        a:id="@+id/news_description"
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:text=""
+        a:textSize="15sp"
+        a:layout_marginLeft="10dp"
+        a:layout_toRightOf="@+id/news_image"
+        a:layout_below="@id/news_title"
+        a:layout_alignParentRight="true">
     </TextView>
 
 </RelativeLayout>

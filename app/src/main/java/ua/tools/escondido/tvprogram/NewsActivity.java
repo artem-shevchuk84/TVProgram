@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
@@ -23,9 +24,16 @@ public class NewsActivity extends ListActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news);
 
+        Button homeBtn = (Button) findViewById(R.id.toolbar_home);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goHome();
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.action_news));
-        toolbar.inflateMenu(R.menu.menu);
+        toolbar.setTitle(getResources().getString(R.string.title_news));
         toolbar.setOnMenuItemClickListener(
                 new Toolbar.OnMenuItemClickListener() {
                     @Override
@@ -64,26 +72,8 @@ public class NewsActivity extends ListActivity{
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.action_channels:
-                intent = new Intent(this, ChannelActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_tvprograms:
-                intent = new Intent(this, TVProgramActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_news:
-                intent = new Intent(this, NewsActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    private void goHome() {
+        Intent intent = new Intent(NewsActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
-
 }

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android"
+    a:layout_width="wrap_content"
+    a:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/program_icon"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_menu_send">
+        a:id="@+id/program_icon"
+        a:layout_width="22dp"
+        a:layout_height="22dp"
+        a:layout_marginLeft="4dp"
+        a:layout_marginRight="10dp"
+        a:layout_marginTop="4dp"
+        a:src="@drawable/ic_menu_send">
     </ImageView>
 
     <TextView
-        android:id="@+id/program_time"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:text="@+id/label"
-        android:textSize="15sp">
+        a:id="@+id/program_time"
+        a:layout_width="60dp"
+        a:layout_height="wrap_content"
+        a:text="@+id/label"
+        a:textSize="15sp">
     </TextView>
 
     <TextView
-        android:id="@+id/program_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@+id/label"
-        android:textSize="15sp">
+        a:id="@+id/program_name"
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:text="@+id/label"
+        a:textSize="15sp">
     </TextView>
 
 </LinearLayout>

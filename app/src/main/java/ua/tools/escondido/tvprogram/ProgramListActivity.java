@@ -99,7 +99,7 @@ public class ProgramListActivity extends ListActivity {
         if("Channel".equals(activityToBack)) {
             intent = new Intent(ProgramListActivity.this, ChannelActivity.class);
         } else if("TVProgram".equals(activityToBack)){
-            intent = new Intent(ProgramListActivity.this, TVProgramActivity.class);
+            intent = new Intent(ProgramListActivity.this, ProgramCategoryActivity.class);
         }
         startActivity(intent);
     }

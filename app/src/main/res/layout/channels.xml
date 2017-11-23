@@ -5,37 +5,32 @@
     a:layout_width="match_parent"
     a:layout_height="match_parent"
     a:fitsSystemWindows="true"
-    tools:context="ua.tools.escondido.tvprogram.ProgramListActivity">
+    tools:context="ua.tools.escondido.tvprogram.ChannelActivity">
 
     <android.support.design.widget.AppBarLayout
         a:layout_height="wrap_content"
         a:layout_width="match_parent"
         a:theme="@style/AppTheme.AppBarOverlay">
-
         <LinearLayout
             a:layout_width="wrap_content"
             a:layout_height="wrap_content">
             <Button
-                a:id="@+id/toolbar_btn_back"
-                a:drawableTop="@drawable/ic_undo_black_24dp"
+                a:id="@+id/toolbar_home"
+                a:drawableTop="@mipmap/ic_home_white_24dp"
                 a:background="?attr/colorPrimary"
                 a:layout_height="wrap_content"
                 a:layout_width="wrap_content"
                 a:layout_marginTop="7dp"
                 a:paddingTop="10dp"/>
-
             <android.support.v7.widget.Toolbar
                 a:id="@+id/toolbar"
                 a:layout_width="match_parent"
                 a:layout_height="?attr/actionBarSize"
                 a:background="?attr/colorPrimary"
                 a:title="@string/app_name"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-            </android.support.v7.widget.Toolbar>
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
         </LinearLayout>
-
     </android.support.design.widget.AppBarLayout>
-
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -47,41 +42,10 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <LinearLayout
-            android:id="@+id/btn_dates_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
 
-            <Button
-                android:id="@+id/today"
-                android:background="@drawable/button_selected"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight='.50'
-                android:layout_alignParentLeft="true"
-                android:textColor="@color/colorWhite"
-                android:paddingTop="5dp"/>
-            <Button
-                android:id="@+id/tomorrow"
-                android:background="@drawable/button_normal"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight='.50'
-                android:layout_alignParentRight="true"
-                android:textColor="@color/colorPrimary"
-                android:paddingTop="5dp"/>
-        </LinearLayout>
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/btn_dates_layout"
-            android:layout_alignParentLeft="true"/>
+            android:layout_height="match_parent"/>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
-
-
-
-
