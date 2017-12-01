@@ -22,27 +22,34 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+    <RelativeLayout
+        a:layout_width="match_parent"
+        a:layout_height="match_parent"
+        a:paddingBottom="@dimen/activity_vertical_margin"
+        a:paddingLeft="@dimen/activity_horizontal_margin"
+        a:paddingRight="@dimen/activity_horizontal_margin"
+        a:paddingTop="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/gridview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:columnWidth="90dp"
-            android:numColumns="2"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
-            android:stretchMode="columnWidth"
-            android:gravity="center"/>
+        <GridView
+            a:id="@+id/gridview"
+            a:layout_width="fill_parent"
+            a:layout_height="wrap_content"
+            a:columnWidth="90dp"
+            a:numColumns="2"
+            a:verticalSpacing="10dp"
+            a:horizontalSpacing="10dp"
+            a:stretchMode="columnWidth"
+            a:gravity="center"/>
 
+        <com.google.android.gms.ads.AdView
+            a:id="@+id/adView"
+            a:layout_width="wrap_content"
+            a:layout_height="wrap_content"
+            a:layout_centerHorizontal="true"
+            a:layout_alignParentBottom="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class DateUtils {
 
-    public static final String DISPLAY_DATE_FORMAT = "EEE, d MMMM yyyy";
+    public static final String DISPLAY_DATE_FORMAT = "EEE, d MMM ''yy";
 
     public static String formatChannelAccessDate(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy", new Locale("uk","UA"));

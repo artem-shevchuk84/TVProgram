@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import ua.tools.escondido.tvprogram.data.MenuCell;
 import ua.tools.escondido.tvprogram.data.adapter.CellMenuAdapter;
 
@@ -20,6 +24,12 @@ public class HomeActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_home);
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111");
+
+        AdView banner = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
 
         MenuCell[] menuCells = new MenuCell[3];
         menuCells[0] = new MenuCell(R.mipmap.ic_list_white_48dp, getResources().getString(R.string.title_channels));
