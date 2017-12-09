@@ -14,6 +14,7 @@
     <string name="action_tvprograms">TV прoграма</string>
     <string name="title_categories">Категорії</string>
     <string name="title_news">Новини</string>
+    <string name="title_online">Прямий ефір</string>
 
     <string name="channel.novyj">Новий канал</string>
     <string name="channel.stb">СТБ</string>
@@ -38,6 +39,11 @@
     <string name="channel.tonis">Tonis</string>
     <string name="channel.football1">Футбол 1</string>
     <string name="channel.football2">Футбол 2</string>
+    <string name="channel.hromadske">Громадське</string>
+    <string name="channel.112">112 Україна</string>
+    <string name="channel.24channel">24 Канал</string>
+    <string name="channel.ZIK">ZIK</string>
+    <string name="channel.euronews_eng">Euronews англійською</string>
 
     <string name="tv_serials">Серіали</string>
     <string name="tv_films">Фільми</string>

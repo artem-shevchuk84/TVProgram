@@ -40,7 +40,8 @@
             a:verticalSpacing="10dp"
             a:horizontalSpacing="10dp"
             a:stretchMode="columnWidth"
-            a:gravity="center"/>
+            a:gravity="center"
+            a:paddingBottom="60dp"/>
 
         <com.google.android.gms.ads.AdView
             a:id="@+id/adView"
@@ -49,7 +50,7 @@
             a:layout_centerHorizontal="true"
             a:layout_alignParentBottom="true"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"> <!--app:adUnitId="ca-app-pub-6844948173266807/4223070918">-->
         </com.google.android.gms.ads.AdView>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

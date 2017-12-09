@@ -11,14 +11,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import ua.tools.escondido.tvprogram.services.IAdvertizable;
+import ua.tools.escondido.tvprogram.services.impl.Advertise;
 import ua.tools.escondido.tvprogram.utils.Constants;
 
-public class ChannelActivity extends ListActivity{
+public class ChannelActivity extends ListActivity {
+
+    private IAdvertizable advertizable = new Advertise();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.channels);
+
+        advertizable.initBanner(this);
 
         Button homeBtn = (Button) findViewById(R.id.toolbar_home);
         homeBtn.setOnClickListener(new View.OnClickListener() {

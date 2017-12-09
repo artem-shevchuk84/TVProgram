@@ -1,26 +1,21 @@
 package ua.tools.escondido.tvprogram;
 
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-
 import ua.tools.escondido.tvprogram.services.IAdvertizable;
 import ua.tools.escondido.tvprogram.services.impl.Advertise;
 import ua.tools.escondido.tvprogram.utils.Constants;
 
-
-public class ProgramCategoryActivity extends ListActivity {
+public class OnLineTvListActivity extends ListActivity {
 
     private IAdvertizable advertizable = new Advertise();
 
@@ -40,7 +35,7 @@ public class ProgramCategoryActivity extends ListActivity {
         });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.title_categories));
+        toolbar.setTitle(getResources().getString(R.string.title_channels));
         toolbar.setOnMenuItemClickListener(
                 new Toolbar.OnMenuItemClickListener() {
                     @Override
@@ -49,14 +44,14 @@ public class ProgramCategoryActivity extends ListActivity {
                     }
                 });
 
-        String[] channels = new String[] {getResources().getString(R.string.tv_serials),
-                getResources().getString(R.string.tv_films),
-                getResources().getString(R.string.tv_entertainment),
-                getResources().getString(R.string.tv_information),
-                getResources().getString(R.string.tv_sociopolitical),
-                getResources().getString(R.string.tv_show),
-                getResources().getString(R.string.tv_sport),
-                getResources().getString(R.string.tv_kid)
+        String[] channels = new String[] {
+                getResources().getString(R.string.channel_5kanal),
+                getResources().getString(R.string.channel_espresso),
+                getResources().getString(R.string.channel_hromadske),
+                getResources().getString(R.string.channel_112),
+                getResources().getString(R.string.channel_24channel),
+                getResources().getString(R.string.channel_ZIK),
+                getResources().getString(R.string.channel_euronews_eng)
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -68,14 +63,14 @@ public class ProgramCategoryActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         String item = (String) getListAdapter().getItem(position);
 
-        Intent intent = new Intent(this, ProgramListActivity.class);
+        Intent intent = new Intent(this, OnLineTvViewActivity.class);
         intent.putExtra(Constants.CHANNEL_NAME, item);
-        intent.putExtra(Constants.BACK_ACTIVITY, "TVProgram");
+        intent.putExtra(Constants.BACK_ACTIVITY, "OnLineTvList");
         startActivity(intent);
     }
 
     private void goHome() {
-        Intent intent = new Intent(ProgramCategoryActivity.this, HomeActivity.class);
+        Intent intent = new Intent(OnLineTvListActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 }

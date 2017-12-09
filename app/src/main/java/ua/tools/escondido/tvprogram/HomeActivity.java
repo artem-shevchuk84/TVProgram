@@ -18,23 +18,25 @@ import com.google.android.gms.ads.MobileAds;
 
 import ua.tools.escondido.tvprogram.data.MenuCell;
 import ua.tools.escondido.tvprogram.data.adapter.CellMenuAdapter;
+import ua.tools.escondido.tvprogram.services.IAdvertizable;
+import ua.tools.escondido.tvprogram.services.impl.Advertise;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends Activity{
+
+    private IAdvertizable advertizable = new Advertise();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_home);
 
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111");
+        advertizable.initBanner(this);
 
-        AdView banner = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
-
-        MenuCell[] menuCells = new MenuCell[3];
+        MenuCell[] menuCells = new MenuCell[4];
         menuCells[0] = new MenuCell(R.mipmap.ic_list_white_48dp, getResources().getString(R.string.title_channels));
         menuCells[1] = new MenuCell(R.mipmap.ic_list_white_48dp, getResources().getString(R.string.title_categories));
         menuCells[2] = new MenuCell(R.mipmap.ic_speaker_notes_white_48dp, getResources().getString(R.string.title_news));
+        menuCells[3] = new MenuCell(R.mipmap.ic_speaker_notes_white_48dp, getResources().getString(R.string.title_online));
 
         GridView gridView = (GridView)findViewById(R.id.gridview);
         CellMenuAdapter cellMenuAdapter = new CellMenuAdapter(this, menuCells);
@@ -55,6 +57,10 @@ public class HomeActivity extends Activity {
                         return;
                     case 2:
                         intent = new Intent(getBaseContext(), NewsActivity.class);
+                        startActivity(intent);
+                        return;
+                    case 3:
+                        intent = new Intent(getBaseContext(), OnLineTvListActivity.class);
                         startActivity(intent);
                         return;
                     default:

@@ -51,6 +51,15 @@
             android:name=".ProgramCategoryActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".OnLineTvListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".OnLineTvViewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen">
+        </activity>
     </application>
 
 </manifest>
