@@ -32,11 +32,13 @@ public class HomeActivity extends Activity{
 
         advertizable.initBanner(this);
 
-        MenuCell[] menuCells = new MenuCell[4];
+        MenuCell[] menuCells = new MenuCell[6];
         menuCells[0] = new MenuCell(R.mipmap.ic_list_white_48dp, getResources().getString(R.string.title_channels));
         menuCells[1] = new MenuCell(R.mipmap.ic_list_white_48dp, getResources().getString(R.string.title_categories));
         menuCells[2] = new MenuCell(R.mipmap.ic_speaker_notes_white_48dp, getResources().getString(R.string.title_news));
-        menuCells[3] = new MenuCell(R.mipmap.ic_speaker_notes_white_48dp, getResources().getString(R.string.title_online));
+        menuCells[3] = new MenuCell(R.mipmap.ic_live_tv_white_48dp, getResources().getString(R.string.title_online));
+        menuCells[4] = new MenuCell(R.mipmap.ic_settings_white_48dp, getResources().getString(R.string.title_settings));
+        menuCells[5] = new MenuCell(R.mipmap.ic_info_outline_white_48dp, getResources().getString(R.string.title_about));
 
         GridView gridView = (GridView)findViewById(R.id.gridview);
         CellMenuAdapter cellMenuAdapter = new CellMenuAdapter(this, menuCells);
@@ -60,6 +62,10 @@ public class HomeActivity extends Activity{
                         startActivity(intent);
                         return;
                     case 3:
+                        intent = new Intent(getBaseContext(), OnLineTvListActivity.class);
+                        startActivity(intent);
+                        return;
+                    case 5:
                         intent = new Intent(getBaseContext(), OnLineTvListActivity.class);
                         startActivity(intent);
                         return;
