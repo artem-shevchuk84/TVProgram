@@ -1,7 +1,6 @@
 package ua.tools.escondido.tvprogram.data.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import ua.tools.escondido.tvprogram.ChannelActivity;
 import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.data.MenuCell;
 
-/**
- * Created by artem.shevchuk on 11/22/2017.
- */
 
 public class CellMenuAdapter extends BaseAdapter{
 

@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram;
+package ua.tools.escondido.tvprogram.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.util.Calendar;
 import java.util.List;
 
+import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.data.ProgramEvent;
 import ua.tools.escondido.tvprogram.data.adapter.ProgramsListAdapter;

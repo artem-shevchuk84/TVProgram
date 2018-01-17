@@ -14,4 +14,6 @@ public class Constants {
     public static final String NEWS_INFO_PATH = "NEWS_INFO_PATH";
     public static final String NEWS_TITLE = "NEWS_TITLE";
     public static final String NEWS_IMAGE = "NEWS_IMAGE";
+
+    public static final String API_KEY = "AIzaSyBjTgm30XNETUZS0HfUwU9HrWkywpgRG8A";
 }

@@ -5,7 +5,7 @@
     a:layout_width="match_parent"
     a:layout_height="match_parent"
     a:fitsSystemWindows="true"
-    tools:context="ua.tools.escondido.tvprogram.OnLineTvViewActivity">
+    tools:context=".activity.OnLineTvViewActivity">
 
     <android.support.design.widget.AppBarLayout
         a:layout_height="30dp"

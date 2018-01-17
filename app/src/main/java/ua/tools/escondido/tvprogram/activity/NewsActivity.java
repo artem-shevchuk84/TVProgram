@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram;
+package ua.tools.escondido.tvprogram.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -11,11 +11,13 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.data.News;
 import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
 import ua.tools.escondido.tvprogram.data.adapter.NewsListAdapter;
 import ua.tools.escondido.tvprogram.services.loader.async.NewsListDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
+import ua.tools.escondido.tvprogram.utils.Navigate;
 
 public class NewsActivity extends ListActivity{
 
@@ -28,7 +30,7 @@ public class NewsActivity extends ListActivity{
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goHome();
+                Navigate.goHome(NewsActivity.this);
             }
         });
 
@@ -70,10 +72,5 @@ public class NewsActivity extends ListActivity{
             intent.putExtra(Constants.NEWS_IMAGE, news.getImagePath());
             startActivity(intent);
         }
-    }
-
-    private void goHome() {
-        Intent intent = new Intent(NewsActivity.this, HomeActivity.class);
-        startActivity(intent);
     }
 }

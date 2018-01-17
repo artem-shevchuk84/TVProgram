@@ -1,17 +1,20 @@
 <resources>
     <string name="app_name">TV прoграма</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+<!--    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>-->
 
     <string name="progressbar.loading.text">Іде загрузка…</string>
 
     <string name="alert.error.no_internet">Помилка з\'єднання! \nПеревірте підключення до інтернету.</string>
     <string name="alert.btn.close">Закрити</string>
 
+    <string name="howto.description">\tМобільний додаток надає інформацію про программу телепередач українських телеканалів,
+        а також можливість перегляду новин шоу-бізнесу. Для деяких каналів доступна можливість перегляду в режимі онлайн.
+    </string>
+
     <string name="title_home">TV прoграма</string>
     <string name="title_channels">Канали</string>
-    <string name="action_tvprograms">TV прoграма</string>
     <string name="title_categories">Категорії</string>
     <string name="title_news">Новини</string>
     <string name="title_online">Прямий ефір</string>

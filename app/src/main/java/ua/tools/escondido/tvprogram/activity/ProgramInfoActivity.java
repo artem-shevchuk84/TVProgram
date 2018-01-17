@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram;
+package ua.tools.escondido.tvprogram.activity;
 
 
 import android.app.Activity;
@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.data.ProgramInfo;
 import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
 import ua.tools.escondido.tvprogram.services.loader.async.ProgramInfoDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
+import ua.tools.escondido.tvprogram.utils.Navigate;
 
 public class ProgramInfoActivity extends Activity {
 
@@ -37,7 +39,8 @@ public class ProgramInfoActivity extends Activity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBack(channelName);
+                Navigate.goBack(ProgramInfoActivity.this, ProgramListActivity.class, activityToBack, channelName);
+
             }
         });
 
@@ -56,18 +59,11 @@ public class ProgramInfoActivity extends Activity {
 
             @Override
             public void handleError() {
-                goBack(channelName);
+                Navigate.goBack(ProgramInfoActivity.this, ProgramListActivity.class, activityToBack, channelName);
             }
 
         }).execute(programInfoPath);
 
-    }
-
-    private void goBack(String channelName) {
-        Intent intent = new Intent(ProgramInfoActivity.this, ProgramListActivity.class);
-        intent.putExtra(Constants.CHANNEL_NAME, channelName);
-        intent.putExtra(Constants.BACK_ACTIVITY, activityToBack);
-        startActivity(intent);
     }
 
 }

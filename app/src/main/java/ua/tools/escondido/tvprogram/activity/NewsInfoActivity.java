@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram;
+package ua.tools.escondido.tvprogram.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,11 +16,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.ExecutionException;
 
+import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.data.News;
 import ua.tools.escondido.tvprogram.services.AsyncTaskCallback;
 import ua.tools.escondido.tvprogram.services.loader.async.ImageLoader;
 import ua.tools.escondido.tvprogram.services.loader.async.NewsInfoDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
+import ua.tools.escondido.tvprogram.utils.Navigate;
 
 
 public class NewsInfoActivity extends Activity{
@@ -48,8 +50,7 @@ public class NewsInfoActivity extends Activity{
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewsInfoActivity.this, NewsActivity.class);
-                startActivity(intent);
+                Navigate.goBack(NewsInfoActivity.this, NewsActivity.class);
             }
         });
 

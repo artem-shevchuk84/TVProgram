@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram;
+package ua.tools.escondido.tvprogram.activity;
 
 
 import android.app.ListActivity;
@@ -11,9 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.services.IAdvertizable;
 import ua.tools.escondido.tvprogram.services.impl.Advertise;
 import ua.tools.escondido.tvprogram.utils.Constants;
+import ua.tools.escondido.tvprogram.utils.Navigate;
 
 public class OnLineTvListActivity extends ListActivity {
 
@@ -30,7 +32,7 @@ public class OnLineTvListActivity extends ListActivity {
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goHome();
+                Navigate.goHome(OnLineTvListActivity.this);
             }
         });
 
@@ -69,8 +71,4 @@ public class OnLineTvListActivity extends ListActivity {
         startActivity(intent);
     }
 
-    private void goHome() {
-        Intent intent = new Intent(OnLineTvListActivity.this, HomeActivity.class);
-        startActivity(intent);
-    }
 }

@@ -15,7 +15,7 @@
             android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
         <activity
-                android:name=".HomeActivity"
+                android:name=".activity.HomeActivity"
                 android:label="@string/title_home"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,41 +24,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProgramListActivity"
+            android:name=".activity.ProgramListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ChannelActivity"
+            android:name=".activity.ChannelActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".NewsActivity"
+            android:name=".activity.NewsActivity"
             android:label="@string/title_news"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".NewsInfoActivity"
+            android:name=".activity.NewsInfoActivity"
             android:label="@string/title_news"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ProgramInfoActivity"
+            android:name=".activity.ProgramInfoActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ProgramCategoryActivity"
+            android:name=".activity.ProgramCategoryActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".OnLineTvListActivity"
+            android:name=".activity.OnLineTvListActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".OnLineTvViewActivity"
+            android:name=".activity.OnLineTvViewActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar.Fullscreen">
+        </activity>
+        <activity
+            android:name=".activity.HowToActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

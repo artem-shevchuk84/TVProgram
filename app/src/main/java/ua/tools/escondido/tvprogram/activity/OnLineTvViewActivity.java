@@ -1,4 +1,4 @@
-package ua.tools.escondido.tvprogram;
+package ua.tools.escondido.tvprogram.activity;
 
 
 import android.content.Intent;
@@ -14,17 +14,16 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.data.Channels;
 import ua.tools.escondido.tvprogram.utils.Constants;
+import ua.tools.escondido.tvprogram.utils.Navigate;
 
 
 public class OnLineTvViewActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
     private String activityToBack;
     private String channelName;
-
-    public static final String API_KEY = "AIzaSyBjTgm30XNETUZS0HfUwU9HrWkywpgRG8A";
-    public static final String VIDEO_ID = "9522a1K2qsg";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,13 +38,13 @@ public class OnLineTvViewActivity extends YouTubeBaseActivity implements YouTube
         toolbar.setTitle(channelName);
 
         YouTubePlayerView youTubePlayerView = (YouTubePlayerView) findViewById(R.id.on_line_video);
-        youTubePlayerView.initialize(API_KEY, this);
+        youTubePlayerView.initialize(Constants.API_KEY, this);
 
         Button backBtn = (Button) findViewById(R.id.toolbar_btn_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBack(channelName);
+                Navigate.goBack(OnLineTvViewActivity.this, OnLineTvListActivity.class, activityToBack, channelName);
             }
         });
     }
@@ -63,14 +62,6 @@ public class OnLineTvViewActivity extends YouTubeBaseActivity implements YouTube
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         Toast.makeText(this, "Failed to initialize.", Toast.LENGTH_LONG).show();
-    }
-
-
-    private void goBack(String channelName) {
-        Intent intent = new Intent(OnLineTvViewActivity.this, OnLineTvListActivity.class);
-        intent.putExtra(Constants.CHANNEL_NAME, channelName);
-        intent.putExtra(Constants.BACK_ACTIVITY, activityToBack);
-        startActivity(intent);
     }
 
     private String getVideoId(String channelName){

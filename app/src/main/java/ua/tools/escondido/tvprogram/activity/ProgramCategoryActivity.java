@@ -1,23 +1,20 @@
-package ua.tools.escondido.tvprogram;
+package ua.tools.escondido.tvprogram.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-
+import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.services.IAdvertizable;
 import ua.tools.escondido.tvprogram.services.impl.Advertise;
 import ua.tools.escondido.tvprogram.utils.Constants;
+import ua.tools.escondido.tvprogram.utils.Navigate;
 
 
 public class ProgramCategoryActivity extends ListActivity {
@@ -35,7 +32,7 @@ public class ProgramCategoryActivity extends ListActivity {
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goHome();
+                Navigate.goHome(ProgramCategoryActivity.this);
             }
         });
 
@@ -71,11 +68,6 @@ public class ProgramCategoryActivity extends ListActivity {
         Intent intent = new Intent(this, ProgramListActivity.class);
         intent.putExtra(Constants.CHANNEL_NAME, item);
         intent.putExtra(Constants.BACK_ACTIVITY, "TVProgram");
-        startActivity(intent);
-    }
-
-    private void goHome() {
-        Intent intent = new Intent(ProgramCategoryActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 }
