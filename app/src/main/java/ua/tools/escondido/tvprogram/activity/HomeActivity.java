@@ -26,13 +26,13 @@ public class HomeActivity extends Activity{
 
         advertizable.initBanner(this);
 
-        MenuCell[] menuCells = new MenuCell[6];
+        MenuCell[] menuCells = new MenuCell[4];
         menuCells[0] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_list_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_channels));
         menuCells[1] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_list_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_categories));
         menuCells[2] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_speaker_notes_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_news));
         menuCells[3] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_live_tv_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_online));
-        menuCells[4] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_settings_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_settings));
-        menuCells[5] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_info_outline_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_about));
+        //menuCells[4] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_settings_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_settings));
+        //menuCells[5] = new MenuCell(ua.tools.escondido.tvprogram.R.mipmap.ic_info_outline_white_48dp, getResources().getString(ua.tools.escondido.tvprogram.R.string.title_about));
 
         GridView gridView = (GridView)findViewById(ua.tools.escondido.tvprogram.R.id.gridview);
         CellMenuAdapter cellMenuAdapter = new CellMenuAdapter(this, menuCells);
@@ -55,14 +55,14 @@ public class HomeActivity extends Activity{
                         intent = new Intent(getBaseContext(), NewsActivity.class);
                         startActivity(intent);
                         return;
-                    case 3:
+                   case 3:
                         intent = new Intent(getBaseContext(), OnLineTvListActivity.class);
                         startActivity(intent);
                         return;
-                    case 5:
+/*                     case 5:
                         intent = new Intent(getBaseContext(), HowToActivity.class);
                         startActivity(intent);
-                        return;
+                        return;*/
                     default:
                         break;
                 }

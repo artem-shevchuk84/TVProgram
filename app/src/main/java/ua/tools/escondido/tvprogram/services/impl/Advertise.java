@@ -15,7 +15,7 @@ public class Advertise implements IAdvertizable {
     @Override
     public void initBanner(Context context) {
         MobileAds.initialize(context, "ca-app-pub-3940256099942544/6300978111");
-        //MobileAds.initialize(context, "ca-app-pub-6844948173266807/4223070918");
+        //MobileAds.initialize(context, "ca-app-pub-6844948173266807/4223070918"); //prod
 
         AdView banner = (AdView) ((Activity) context).findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

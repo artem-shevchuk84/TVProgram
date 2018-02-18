@@ -5,7 +5,7 @@ android {
         free {
             keyAlias 'TVProgram'
             keyPassword 'Ghjuhfvth16'
-            storeFile file('D:/projects/ArtSh/TVProgram/tv_program.jks')
+            storeFile file('D:/escondido/projects/TVProgram/tv_program.jks')
             storePassword 'Ghjuhfvth16'
         }
     }
@@ -15,8 +15,8 @@ android {
         applicationId "ua.tools.escondido.tvprogram"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 3
-        versionName "1.2.0"
+        versionCode 4
+        versionName "1.2.1"
     }
     buildTypes {
         debug {
@@ -29,7 +29,7 @@ android {
     }
 }
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: '../libs')
     testCompile 'junit:junit:4.12'
     testCompile 'com.tngtech.java:junit-dataprovider:1.10.0'
     compile 'com.android.support:appcompat-v7:24.2.1'
