@@ -75,7 +75,27 @@ public class ChannelProgramServiceTest {
                 { Channels.NOVIY_CANAL },
                 { Channels.STB },
                 { Channels.ICTV },
-                { Channels.TV_SERIALS },
+                { Channels.ONE_PLUS_ONE },
+                { Channels.MEGA },
+                { Channels.UKRAINA },
+                { Channels.UA_PERVYJ },
+                { Channels.INTER },
+                { Channels.FIVE_KANAL },
+                { Channels.K1 },
+                { Channels.NTN },
+                { Channels.TET },
+                { Channels.TWO_PLUS_TWO },
+                { Channels.PIKSEL },
+                { Channels.NLO },
+                { Channels.ENTERFILM },
+                { Channels.M1 },
+                { Channels.K2 },
+                { Channels.ZOOM },
+                { Channels.ESPRESSO },
+                { Channels.TONIS },
+                { Channels.FOOTBALL1 },
+                { Channels.FOOTBALL2 },
+                { Channels.TV_SERIALS }
         };
     }
 

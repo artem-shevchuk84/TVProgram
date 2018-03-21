@@ -28,7 +28,7 @@ import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.DateUtils;
 
 
-public class ProgramListActivity extends ListActivity {
+public class ProgramListActivity extends BaseListActivity {
 
     private ChannelProgramService channelProgramService;
     private String channelName;
@@ -81,7 +81,7 @@ public class ProgramListActivity extends ListActivity {
             }
         });
 
-        Button backBtn = (Button) findViewById(R.id.toolbar_btn_back);
+        backBtn.setVisibility(View.VISIBLE);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

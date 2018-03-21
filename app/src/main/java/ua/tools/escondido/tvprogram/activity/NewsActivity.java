@@ -19,14 +19,13 @@ import ua.tools.escondido.tvprogram.services.loader.async.NewsListDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.Navigate;
 
-public class NewsActivity extends ListActivity{
+public class NewsActivity extends BaseListActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.news);
+        setContentView(R.layout.main_list);
 
-        Button homeBtn = (Button) findViewById(R.id.toolbar_home);
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

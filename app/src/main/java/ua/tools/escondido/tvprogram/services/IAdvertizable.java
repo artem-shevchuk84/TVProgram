@@ -9,4 +9,5 @@ import android.content.Context;
 public interface IAdvertizable {
 
     void initBanner(Context context);
+    void initBanner();
 }

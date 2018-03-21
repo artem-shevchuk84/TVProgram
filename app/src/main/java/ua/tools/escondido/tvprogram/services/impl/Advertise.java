@@ -21,4 +21,9 @@ public class Advertise implements IAdvertizable {
         AdRequest adRequest = new AdRequest.Builder().build();
         banner.loadAd(adRequest);
     }
+
+    @Override
+    public void initBanner() {
+
+    }
 }

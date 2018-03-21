@@ -25,7 +25,7 @@ import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.Navigate;
 
 
-public class NewsInfoActivity extends Activity{
+public class NewsInfoActivity extends BaseActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,9 @@ public class NewsInfoActivity extends Activity{
                 .into(newsImage);
         newsTitle.setText(title);
 
-        Button backBtn = (Button) findViewById(R.id.toolbar_btn_back);
+        homeBtn.setVisibility(View.INVISIBLE);
+
+        backBtn.setVisibility(View.VISIBLE);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -17,18 +17,13 @@ import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.Navigate;
 
 
-public class ProgramCategoryActivity extends ListActivity {
-
-    private IAdvertizable advertizable = new Advertise();
+public class ProgramCategoryActivity extends BaseListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.channels);
+        setContentView(R.layout.main_list);
 
-        advertizable.initBanner(this);
-
-        Button homeBtn = (Button) findViewById(R.id.toolbar_home);
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

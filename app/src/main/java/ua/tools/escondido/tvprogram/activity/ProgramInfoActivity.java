@@ -18,7 +18,7 @@ import ua.tools.escondido.tvprogram.services.loader.async.ProgramInfoDataLoader;
 import ua.tools.escondido.tvprogram.utils.Constants;
 import ua.tools.escondido.tvprogram.utils.Navigate;
 
-public class ProgramInfoActivity extends Activity {
+public class ProgramInfoActivity extends BaseActivity {
 
     private String activityToBack;
 
@@ -35,7 +35,9 @@ public class ProgramInfoActivity extends Activity {
         final TextView name = (TextView) findViewById(R.id.program_title);
         final TextView description = (TextView) findViewById(R.id.program_description);
 
-        Button backBtn = (Button) findViewById(R.id.toolbar_btn_back);
+        homeBtn.setVisibility(View.INVISIBLE);
+
+        backBtn.setVisibility(View.VISIBLE);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
