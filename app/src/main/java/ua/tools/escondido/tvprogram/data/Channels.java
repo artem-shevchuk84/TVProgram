@@ -10,7 +10,7 @@ public enum Channels {
     ICTV(HTTPS_BASE_PATH + "/channels/ictv/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     ONE_PLUS_ONE(HTTPS_BASE_PATH + "/channels/1plus1/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     MEGA(HTTPS_BASE_PATH + "/channels/mega/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
-    UKRAINA(HTTPS_BASE_PATH + "/channels/ukraina/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix>"),
+    UKRAINA(HTTPS_BASE_PATH + "/channels/ukraina/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     UA_PERVYJ(HTTPS_BASE_PATH + "/channels/ua_pervyj/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     INTER(HTTPS_BASE_PATH + "/channels/inter/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     FIVE_KANAL(HTTPS_BASE_PATH + "/channels/5kanal/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix", "r1L1J7E4oog"),

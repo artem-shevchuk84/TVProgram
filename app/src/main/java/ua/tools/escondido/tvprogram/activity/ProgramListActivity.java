@@ -1,6 +1,5 @@
 package ua.tools.escondido.tvprogram.activity;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
