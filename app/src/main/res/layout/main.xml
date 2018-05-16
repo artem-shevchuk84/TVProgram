@@ -20,22 +20,30 @@
             a:theme="@style/AppTheme.AppBarOverlay">
             <LinearLayout
                 a:layout_width="wrap_content"
-                a:layout_height="wrap_content">
+                a:layout_height="wrap_content"
+                a:orientation="horizontal">
                 <Button
                     a:id="@+id/toolbar_home"
                     a:drawableTop="@mipmap/ic_home_white_24dp"
                     a:background="?attr/colorPrimary"
-                    a:layout_height="wrap_content"
-                    a:layout_width="wrap_content"
+                    a:layout_height="50dp"
+                    a:layout_width="50dp"
                     a:layout_marginTop="7dp"
                     a:paddingTop="10dp"/>
                 <Button
                     a:id="@+id/toolbar_btn_back"
                     a:drawableTop="@drawable/ic_undo_black_24dp"
                     a:background="?attr/colorPrimary"
-                    a:layout_height="wrap_content"
-                    a:layout_width="wrap_content"
+                    a:layout_height="50dp"
+                    a:layout_width="50dp"
                     a:layout_marginTop="7dp"
+                    a:paddingTop="10dp"/>
+                <Button
+                    a:id="@+id/toolbar_btn_add_to_notif"
+                    a:background="?attr/colorPrimary"
+                    a:layout_height="50dp"
+                    a:layout_width="50dp"
+                    a:layout_marginTop="8dp"
                     a:paddingTop="10dp"/>
                 <android.support.v7.widget.Toolbar
                     a:id="@+id/toolbar"

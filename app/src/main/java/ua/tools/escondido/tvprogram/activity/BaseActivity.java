@@ -27,6 +27,8 @@ public class BaseActivity extends Activity implements IAdvertizable{
 
     Button backBtn;
     Button homeBtn;
+    Button notifBtn;
+
     private DrawerLayout drawerLayout;
 
     @Override
@@ -34,7 +36,9 @@ public class BaseActivity extends Activity implements IAdvertizable{
         super.setContentView(R.layout.main);
         homeBtn = (Button) findViewById(R.id.toolbar_home);
         backBtn = (Button) findViewById(R.id.toolbar_btn_back);
-        backBtn.setVisibility(View.INVISIBLE);
+        notifBtn = (Button) findViewById(R.id.toolbar_btn_add_to_notif);
+        backBtn.setVisibility(View.GONE);
+        notifBtn.setVisibility(View.GONE);
         final LayoutInflater layoutInflater = LayoutInflater.from(this);
         LinearLayout body = (LinearLayout)findViewById(R.id.body);
         body.addView(layoutInflater.inflate(layoutId, null));

@@ -1,17 +1,24 @@
 package ua.tools.escondido.tvprogram.activity;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import java.util.Calendar;
+
 import ua.tools.escondido.tvprogram.R;
 import ua.tools.escondido.tvprogram.data.MenuCell;
 import ua.tools.escondido.tvprogram.data.adapter.CellMenuAdapter;
+import ua.tools.escondido.tvprogram.services.broadcast.scheduler.NotificationScheduler;
 
 public class HomeActivity extends BaseActivity{
 
@@ -67,6 +74,24 @@ public class HomeActivity extends BaseActivity{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.title_home));
+
+        setupScheduler();
+    }
+
+    private void setupScheduler() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 5);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        Intent alarm = new Intent(this, NotificationScheduler.class);
+        boolean alarmRunning = (PendingIntent.getBroadcast(this, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
+        if(!alarmRunning) {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarm, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pendingIntent);
+        }
     }
 
 }

@@ -9,8 +9,7 @@
         a:layout_height="22dp"
         a:layout_marginLeft="4dp"
         a:layout_marginRight="10dp"
-        a:layout_marginTop="4dp"
-        a:src="@drawable/ic_menu_send">
+        a:layout_marginTop="4dp">
     </ImageView>
 
     <TextView

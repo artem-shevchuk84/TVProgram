@@ -46,7 +46,7 @@ public class NewsInfoActivity extends BaseActivity{
                 .into(newsImage);
         newsTitle.setText(title);
 
-        homeBtn.setVisibility(View.INVISIBLE);
+        homeBtn.setVisibility(View.GONE);
 
         backBtn.setVisibility(View.VISIBLE);
         backBtn.setOnClickListener(new View.OnClickListener() {

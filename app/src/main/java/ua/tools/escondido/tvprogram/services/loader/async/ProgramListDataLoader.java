@@ -21,16 +21,21 @@ public class ProgramListDataLoader extends AsyncTask<String, Void, List<ProgramE
     private AsyncTaskCallback<List<ProgramEvent>> callback;
     private ProgressDialog progressDialog;
     private Context context;
+    Boolean handleErrors;
 
     public ProgramListDataLoader(Context context,
                                  ChannelProgramService channelProgramService,
+                                 Boolean handleErrors,
                                  AsyncTaskCallback<List<ProgramEvent>> callback) {
         this.callback = callback;
         this.context = context;
         this.channelProgramService = channelProgramService;
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage(context.getString(R.string.progressbar_loading_text));
-        progressDialog.show();
+        this.handleErrors = handleErrors;
+        if(handleErrors) {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage(context.getString(R.string.progressbar_loading_text));
+            progressDialog.show();
+        }
     }
 
     @Override
@@ -40,26 +45,30 @@ public class ProgramListDataLoader extends AsyncTask<String, Void, List<ProgramE
 
     @Override
     protected void onPostExecute(List<ProgramEvent> programEvents) {
-        progressDialog.dismiss();
+        if(handleErrors) {
+            progressDialog.dismiss();
+        }
         if(programEvents == null){
-            final AlertDialog alertDialog = new AlertDialog.Builder(context).
-                    setMessage(context.getString(R.string.alert_error_no_internet)).
-                    setCancelable(false).
-                    setNegativeButton(R.string.alert_btn_close, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            dialog.cancel();
-                            callback.handleError();
-                        }
-                    }).
-                    create();
-            alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface arg0) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                            .setBackgroundResource(R.drawable.button_selected);
-                }
-            });
-            alertDialog.show();
+            if(handleErrors) {
+                final AlertDialog alertDialog = new AlertDialog.Builder(context).
+                        setMessage(context.getString(R.string.alert_error_no_internet)).
+                        setCancelable(false).
+                        setNegativeButton(R.string.alert_btn_close, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                callback.handleError();
+                            }
+                        }).
+                        create();
+                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                                .setBackgroundResource(R.drawable.button_selected);
+                    }
+                });
+                alertDialog.show();
+            }
             programEvents = new ArrayList<>();
         }
         callback.run(programEvents);

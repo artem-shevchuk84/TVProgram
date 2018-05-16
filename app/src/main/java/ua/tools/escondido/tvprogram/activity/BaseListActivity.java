@@ -32,7 +32,7 @@ public class BaseListActivity extends ListActivity implements IAdvertizable {
         super.setContentView(layoutId);
         homeBtn = (Button) findViewById(R.id.toolbar_home);
         backBtn = (Button) findViewById(R.id.toolbar_btn_back);
-        backBtn.setVisibility(View.INVISIBLE);
+        backBtn.setVisibility(View.GONE);
         initBanner();
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

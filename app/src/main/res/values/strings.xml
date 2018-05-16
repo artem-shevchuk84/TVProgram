@@ -17,7 +17,7 @@
     <string name="title_channels">Канали</string>
     <string name="title_categories">Категорії</string>
     <string name="title_news">Новини</string>
-    <string name="title_online">Прямий ефір</string>
+    <string name="title_online">Наживо</string>
     <string name="title_settings">Налаштування</string>
     <string name="title_about">Про додаток</string>
 
@@ -58,4 +58,6 @@
     <string name="tv_show">Ток-шоу</string>
     <string name="tv_sport">Спорт</string>
     <string name="tv_kid">Для дітей</string>
+
+    <string name="notification_union"> o </string>
 </resources>
