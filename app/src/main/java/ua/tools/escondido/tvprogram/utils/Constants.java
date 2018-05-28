@@ -17,6 +17,7 @@ public class Constants {
 
     public static final String API_KEY = "AIzaSyBjTgm30XNETUZS0HfUwU9HrWkywpgRG8A";
 
+    public static final String TIME_DELIMITER = ":";
     public static final String NOTIFICATION_ID = "notification_id";
     public static final String NOTIFICATION = "notification";
 }

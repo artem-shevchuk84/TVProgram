@@ -10,7 +10,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import ua.tools.escondido.tvprogram.activity.ProgramInfoActivity;
+import ua.tools.escondido.tvprogram.data.factory.ChannelContentParserFactory;
+import ua.tools.escondido.tvprogram.services.ChannelProgramService;
+import ua.tools.escondido.tvprogram.services.NotificationService;
 import ua.tools.escondido.tvprogram.services.SettingsService;
+import ua.tools.escondido.tvprogram.services.parser.ChannelContentParser;
+import ua.tools.escondido.tvprogram.utils.DateUtils;
 
 
 public class SettingsServiceImpl implements SettingsService {
@@ -28,6 +34,8 @@ public class SettingsServiceImpl implements SettingsService {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putStringSet(NOTIFICATION_SETTINGS, notifProgramSet);
         editor.apply();
+
+        setNotificationForToday(context, channelName, programPath);
     }
 
     @Override
@@ -81,5 +89,15 @@ public class SettingsServiceImpl implements SettingsService {
         Set<String> notifProgramSet = new HashSet<>();
         SharedPreferences sharedPref = context.getSharedPreferences(SETTINGS_PREF, Context.MODE_PRIVATE);
         return sharedPref.getStringSet(NOTIFICATION_SETTINGS, notifProgramSet);
+    }
+
+    private void setNotificationForToday(Context context, String channelName, String programInfoPath) {
+        NotificationService notificationService = new NotificationServiceImpl();
+        ChannelContentParser channelContentParser = ChannelContentParserFactory.build(context, channelName);
+        ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(context, channelContentParser);
+        String[] data = new String[] {DateUtils.formatChannelAccessDate(DateUtils.getToday())};
+        List<String> channelLinks = new ArrayList<>(1);
+        channelLinks.add(programInfoPath);
+        notificationService.setNotification(context, channelProgramService, data, channelLinks, false);
     }
 }

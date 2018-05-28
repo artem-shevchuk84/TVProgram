@@ -17,6 +17,8 @@ import ua.tools.escondido.tvprogram.activity.HowToActivity;
 import ua.tools.escondido.tvprogram.activity.NewsActivity;
 import ua.tools.escondido.tvprogram.activity.OnLineTvListActivity;
 import ua.tools.escondido.tvprogram.activity.ProgramCategoryActivity;
+import ua.tools.escondido.tvprogram.services.NotificationService;
+import ua.tools.escondido.tvprogram.services.impl.NotificationServiceImpl;
 
 public class Navigate {
 
@@ -57,6 +59,8 @@ public class Navigate {
                             intent = new Intent(baseContext, NewsActivity.class);
                         }
                         else if(title.equals(baseContext.getResources().getString(R.string.title_settings))){
+                            NotificationService notificationService = new NotificationServiceImpl();
+                            notificationService.setupScheduler(baseContext, true);
                             Toast.makeText(baseContext, "Coming soon...", Toast.LENGTH_SHORT).show();
                         }
                         else if(title.equals(baseContext.getResources().getString(R.string.title_about))){

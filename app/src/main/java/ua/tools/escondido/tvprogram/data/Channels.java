@@ -13,7 +13,7 @@ public enum Channels {
     UKRAINA(HTTPS_BASE_PATH + "/channels/ukraina/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     UA_PERVYJ(HTTPS_BASE_PATH + "/channels/ua_pervyj/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     INTER(HTTPS_BASE_PATH + "/channels/inter/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
-    FIVE_KANAL(HTTPS_BASE_PATH + "/channels/5kanal/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix", "r1L1J7E4oog"),
+    FIVE_KANAL(HTTPS_BASE_PATH + "/channels/5kanal/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix", "H-P_rfwkbKQ"),
     K1(HTTPS_BASE_PATH + "/channels/k1/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     NTN(HTTPS_BASE_PATH + "/channels/ntn/", GET,ENCODING_1251,START_METRIC,"<div id=\"phoenix"),
     TET(HTTPS_BASE_PATH + "/channels/tet/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
@@ -29,9 +29,9 @@ public enum Channels {
     FOOTBALL1(HTTPS_BASE_PATH + "/channels/futbol_1/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     FOOTBALL2(HTTPS_BASE_PATH + "/channels/futbol_2/", GET,ENCODING_1251,START_METRIC, "<div id=\"phoenix"),
     HROMADSKE("_3Q9cIMJWOI"),
-    UKRAINA112("T5WCWpRpHDQ"),
-    CHANNEL24("kMKsjmhUt-w"),
-    ZIK("hA5-bAgsFGs"),
+    UKRAINA112("5LcPRSxc0G4"),
+    CHANNEL24("AFReW0B1INA"),
+    ZIK("P07VFuIkrZw"),
     EURONEWS_ENG("Ah04R0okNbQ"),
 
 
