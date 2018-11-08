@@ -5,16 +5,15 @@ android {
         free {
             keyAlias 'TVProgram'
             keyPassword 'Ghjuhfvth16'
-            storeFile file('D:/escondido/projects/TVProgram/tv_program.jks')
+            storeFile file('/media/artem/192cec63-7b6b-4e9d-a306-588430de26cf/dev/escondido/TVProgram/tv_program.jks')
             storePassword 'Ghjuhfvth16'
         }
     }
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 26
     defaultConfig {
         applicationId "ua.tools.escondido.tvprogram"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 5
         versionName "1.2.2"
     }
@@ -29,12 +28,12 @@ android {
     }
 }
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: '../libs')
-    testCompile 'junit:junit:4.12'
-    testCompile 'com.tngtech.java:junit-dataprovider:1.10.0'
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'commons-io:commons-io:2.0.1'
-    compile 'com.squareup.picasso:picasso:2.5.0'
-    compile 'com.google.android.gms:play-services-ads:10.2.1'
+    implementation fileTree(include: ['*.jar'], dir: '../libs')
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.tngtech.java:junit-dataprovider:1.10.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'commons-io:commons-io:2.0.1'
+    implementation 'com.squareup.picasso:picasso:2.5.0'
+    implementation 'com.google.android.gms:play-services-ads:10.2.1'
 }
