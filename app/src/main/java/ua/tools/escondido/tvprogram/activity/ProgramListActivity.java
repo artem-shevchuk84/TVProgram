@@ -8,8 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -28,7 +30,7 @@ import ua.tools.escondido.tvprogram.utils.DateUtils;
 
 public class ProgramListActivity extends BaseListActivity {
 
-    private ChannelProgramService channelProgramService;
+    private static final int DISPLAYED_DAYS = 7;
     private String channelName;
     private String activityToBack;
     private boolean isScheduleAvailable = false;
@@ -44,44 +46,77 @@ public class ProgramListActivity extends BaseListActivity {
         if("Channel".equals(activityToBack)) {
             isScheduleAvailable = true;
         }
+        final HorizontalScrollView scrollView = findViewById(R.id.scrool_view_date_list);
+        final List<Button> weekDays = new ArrayList<>(DISPLAYED_DAYS);
+        weekDays.add((Button) findViewById(R.id.day1));
+        weekDays.add((Button) findViewById(R.id.day2));
+        weekDays.add((Button) findViewById(R.id.day3));
+        weekDays.add((Button) findViewById(R.id.day4));
+        weekDays.add((Button) findViewById(R.id.day5));
+        weekDays.add((Button) findViewById(R.id.day6));
+        weekDays.add((Button) findViewById(R.id.day7));
+
         String today = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, DateUtils.getToday());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(DateUtils.getToday());
-        calendar.add(Calendar.DATE, 1);
-        String tomorrow = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, calendar.getTime());
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 2;
+        final int toDay = DISPLAYED_DAYS - dayOfWeek;
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(channelName);
-
-        final Button todayBtn = (Button) findViewById(R.id.today);
-        final Button tomorrowBtn = (Button) findViewById(R.id.tomorrow);
+        final Button todayBtn = weekDays.get(0);
         todayBtn.setText(today);
+        setButtonSelected(todayBtn);
+
         todayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                todayBtn.setBackgroundResource(R.drawable.button_selected);
-                tomorrowBtn.setBackgroundResource(R.drawable.button_normal);
-                todayBtn.setTextColor(ColorStateList.valueOf(Color.WHITE));
-                tomorrowBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+                setButtonSelected(todayBtn);
+                unselectButtons(weekDays, toDay, 0);
                 String formattedDate = DateUtils.formatChannelAccessDate(DateUtils.getToday());
                 load(channelName, formattedDate);
             }
         });
-        tomorrowBtn.setText(tomorrow);
-        tomorrowBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tomorrowBtn.setBackgroundResource(R.drawable.button_selected);
-                todayBtn.setBackgroundResource(R.drawable.button_normal);
-                tomorrowBtn.setTextColor(ColorStateList.valueOf(Color.WHITE));
-                todayBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(DateUtils.getToday());
-                calendar.add(Calendar.DATE, 1);
-                String formattedDate = DateUtils.formatChannelAccessDate(calendar.getTime());
-                load(channelName, formattedDate);
+        // scroll to button
+/*
+        todayBtn.requestFocus();
+        final Rect scrollBounds = new Rect();
+        scrollView.getHitRect(scrollBounds);
+        if (!todayBtn.getLocalVisibleRect(scrollBounds)) {
+            scrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    scrollView.smoothScrollTo(todayBtn.getLeft(), 0);
+                }
+            });
+        }
+*/
+        for (int i = 1; i < DISPLAYED_DAYS; i++){
+            final Button day = weekDays.get(i);
+            final Calendar nextDays = Calendar.getInstance();
+            nextDays.setTime(DateUtils.getToday());
+            nextDays.add(Calendar.DATE, i);
+            String nextDaysValue = DateUtils.formatDate(DateUtils.DISPLAY_DATE_FORMAT, nextDays.getTime());
+            day.setText(nextDaysValue);
+            if (dayOfWeek + i - DISPLAYED_DAYS <= 0) {
+                day.setBackgroundResource(R.drawable.button_normal);
+                day.setTextColor(getResources().getColor(R.color.colorPrimary));
+                final int index = i;
+                day.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setButtonSelected(day);
+                        unselectButtons(weekDays, toDay, index);
+                        String formattedDate = DateUtils.formatChannelAccessDate(nextDays.getTime());
+                        load(channelName, formattedDate);
+                    }
+                });
+            } else {
+                day.setBackgroundResource(R.drawable.button_disabled);
+                day.setTextColor(getResources().getColor(R.color.colorPrimary));
             }
-        });
+        }
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(channelName);
 
         backBtn.setVisibility(View.VISIBLE);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +130,21 @@ public class ProgramListActivity extends BaseListActivity {
 
         load(channelName, formattedDate);
 
+    }
+
+    private void setButtonSelected(Button day) {
+        day.setBackgroundResource(R.drawable.button_selected);
+        day.setTextColor(ColorStateList.valueOf(Color.WHITE));
+    }
+
+    private void unselectButtons(List<Button> weekDays, int from, int except) {
+        for (int i = 0; i <= from; i++){
+            if (i != except) {
+                Button day = weekDays.get(i);
+                day.setBackgroundResource(R.drawable.button_normal);
+                day.setTextColor(getResources().getColor(R.color.colorPrimary));
+            }
+        }
     }
 
     private void goBack() {
@@ -123,7 +173,7 @@ public class ProgramListActivity extends BaseListActivity {
 
     private void load(final String channelName, String formattedDate) {
         ChannelContentParser channelContentParser = ChannelContentParserFactory.build(getBaseContext(), channelName);
-        channelProgramService = new ChannelProgramServiceImpl<>(getBaseContext(), channelContentParser);
+        ChannelProgramService channelProgramService = new ChannelProgramServiceImpl<>(getBaseContext(), channelContentParser);
 
         String[] data = new String[] {formattedDate};
 

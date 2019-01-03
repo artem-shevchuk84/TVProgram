@@ -1,6 +1,5 @@
 package ua.tools.escondido.tvprogram.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,7 +59,7 @@ public class NewsInfoActivity extends BaseActivity{
             @Override
             public void run(News result) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    newsContent.setText(Html.fromHtml(result.getDescription(), new Html.ImageGetter(){
+                    newsContent.setText(Html.fromHtml(result.getDescription(),0, new Html.ImageGetter(){
                         @Override
                         public Drawable getDrawable(String source) {
                             return load(source);
