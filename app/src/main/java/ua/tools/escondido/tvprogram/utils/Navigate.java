@@ -1,24 +1,20 @@
 package ua.tools.escondido.tvprogram.utils;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import ua.tools.escondido.tvprogram.R;
-import ua.tools.escondido.tvprogram.activity.BaseActivity;
 import ua.tools.escondido.tvprogram.activity.ChannelActivity;
 import ua.tools.escondido.tvprogram.activity.HomeActivity;
 import ua.tools.escondido.tvprogram.activity.HowToActivity;
 import ua.tools.escondido.tvprogram.activity.NewsActivity;
 import ua.tools.escondido.tvprogram.activity.OnLineTvListActivity;
 import ua.tools.escondido.tvprogram.activity.ProgramCategoryActivity;
-import ua.tools.escondido.tvprogram.services.NotificationService;
-import ua.tools.escondido.tvprogram.services.impl.NotificationServiceImpl;
+import ua.tools.escondido.tvprogram.activity.SettingsActivity;
 
 public class Navigate {
 
@@ -59,9 +55,7 @@ public class Navigate {
                             intent = new Intent(baseContext, NewsActivity.class);
                         }
                         else if(title.equals(baseContext.getResources().getString(R.string.title_settings))){
-                            NotificationService notificationService = new NotificationServiceImpl();
-                            notificationService.setupScheduler(baseContext, true);
-                            Toast.makeText(baseContext, "Coming soon...", Toast.LENGTH_SHORT).show();
+                            intent = new Intent(baseContext, SettingsActivity.class);
                         }
                         else if(title.equals(baseContext.getResources().getString(R.string.title_about))){
                             intent = new Intent(baseContext, HowToActivity.class);

@@ -26,13 +26,13 @@ public class HomeActivity extends BaseActivity{
 
         homeBtn.setVisibility(View.INVISIBLE);
 
-        MenuCell[] menuCells = new MenuCell[3];
+        MenuCell[] menuCells = new MenuCell[4];
         menuCells[0] = new MenuCell(R.mipmap.ic_list_white_48dp, getResources().getString(R.string.title_channels));
         menuCells[1] = new MenuCell(R.mipmap.ic_list_white_48dp, getResources().getString(R.string.title_categories));
         menuCells[2] = new MenuCell(R.mipmap.ic_speaker_notes_white_48dp, getResources().getString(R.string.title_news));
-        //menuCells[3] = new MenuCell(R.mipmap.ic_live_tv_white_48dp, getResources().getString(R.string.title_online));
+        menuCells[3] = new MenuCell(R.mipmap.ic_settings_white_48, getResources().getString(R.string.title_settings));
 
-        GridView gridView = (GridView)findViewById(R.id.gridview);
+        GridView gridView = findViewById(R.id.gridview);
         CellMenuAdapter cellMenuAdapter = new CellMenuAdapter(this, menuCells);
         gridView.setAdapter(cellMenuAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,10 +53,10 @@ public class HomeActivity extends BaseActivity{
                         intent = new Intent(getBaseContext(), NewsActivity.class);
                         startActivity(intent);
                         return;
-/*                   case 3:
-                        intent = new Intent(getBaseContext(), OnLineTvListActivity.class);
+                    case 3:
+                        intent = new Intent(getBaseContext(), SettingsActivity.class);
                         startActivity(intent);
-                        return;*/
+                        return;
                     default:
                         break;
                 }

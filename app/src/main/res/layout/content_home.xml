@@ -5,13 +5,11 @@
 
     <GridView
         a:id="@+id/gridview"
-        a:layout_width="fill_parent"
+        a:layout_width="wrap_content"
         a:layout_height="wrap_content"
-        a:columnWidth="90dp"
+        a:columnWidth="140dp"
         a:gravity="center"
-        a:horizontalSpacing="10dp"
         a:numColumns="2"
-        a:paddingBottom="60dp"
-        a:stretchMode="columnWidth"
-        a:verticalSpacing="10dp" />
+        a:paddingBottom="0dp"
+        a:stretchMode="columnWidth"/>
 </LinearLayout>

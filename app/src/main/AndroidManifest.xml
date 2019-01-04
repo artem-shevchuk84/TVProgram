@@ -67,6 +67,10 @@
             android:name=".activity.HowToActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <receiver android:name=".services.broadcast.scheduler.NotificationScheduler"/>
         <receiver android:name=".services.broadcast.alarm.ProgramNotificationAlarm"/>

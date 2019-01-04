@@ -11,15 +11,15 @@
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
         a:scaleType="centerCrop"
-        a:layout_marginBottom="50dp"
-        a:src="@mipmap/ic_home_white_24dp"/>
+        a:layout_marginBottom="50dp"/>
 
     <TextView
         a:id="@+id/menucell_title"
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
-        a:textSize="20sp"
-        a:layout_marginBottom="20dp"
+        a:textSize="18sp"
+        a:layout_marginLeft="4dp"
+        a:layout_marginBottom="30dp"
         a:textColor="@color/colorWhite"
         a:gravity="center_horizontal"/>
 
